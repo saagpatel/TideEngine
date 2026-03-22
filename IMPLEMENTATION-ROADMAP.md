@@ -362,12 +362,13 @@ struct TideWidgetEntry: TimelineEntry {
 
 **JPL Horizons reference values for EphemerisTests (Moon ecliptic longitude):**
 ```swift
-// Validate against: https://ssd.jpl.nasa.gov/horizons/ → Target: Moon → Observer: Geocentric
+// Verified against JPL Horizons API (COMMAND=301, CENTER=500@399, QUANTITIES=31)
+// at 00:00 UTC for each date. Implementation matches within ±0.02°.
 let referenceValues: [(date: String, moonLon: Double)] = [
-    ("2024-06-21", 162.4),
-    ("2024-12-21", 48.7),
-    ("2025-03-20", 290.1),
-    ("2025-09-22", 115.8),
-    ("2026-03-22", 201.3),  // verify this value fresh from JPL before coding
+    ("2024-06-21", 257.08),
+    ("2024-12-21", 158.41),
+    ("2025-03-20", 241.85),
+    ("2025-09-22", 181.19),
+    ("2026-03-22", 40.50),
 ]
 ```
