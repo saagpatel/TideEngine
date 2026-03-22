@@ -1,0 +1,695 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		02EC8257201CF1E137C51423 /* EphemerisTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2857A2949A71974A3D71C19 /* EphemerisTests.swift */; };
+		07D16E2398C01320072CA103 /* TideEngineApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1548802F048D23EB03F6CB8F /* TideEngineApp.swift */; };
+		0DEFB72D4592CA09DEE3C4C9 /* CoastlineData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F99F16FE00BEFD9BBF02AE /* CoastlineData.swift */; };
+		17C9DA8AC6EBE50A0A51371B /* KeychainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90414C8A200F29B8A0E945C2 /* KeychainHelper.swift */; };
+		1A7A6A50A3EFE01806862D74 /* CoastlineResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4D097B5C396F793793CE31 /* CoastlineResolver.swift */; };
+		1AA1968185591E0891742054 /* StoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00DB526853ECF2DD5705A0E0 /* StoreManager.swift */; };
+		239601520E3CC23B230B6007 /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 10600BD904CF0971AF9C4269 /* Shaders.metal */; };
+		23E3A047A5C5FAE2BEED5F1A /* TideWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DAE458FBC4C785779C46E9 /* TideWidgetBundle.swift */; };
+		33A11BD3B3C7EC81549A4F71 /* TideCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = B302A226E1B473D87BB887A5 /* TideCache.swift */; };
+		3A5E6816CE74D84D02222F52 /* Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1153DEDB7DABE4C4A2C3E6DB /* Types.swift */; };
+		42BC9425633846E11AE73940 /* TideModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848103B5B5169DB70604A28E /* TideModels.swift */; };
+		498DAD4A3404E84632A9E5DD /* TidalForce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E37CB377248480F5A7995B1 /* TidalForce.swift */; };
+		4F68F6AD0C6DC719E06CAEE2 /* TideAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E34A23A35D6D3F57BAEC8C76 /* TideAPITests.swift */; };
+		55684E06F5EACEF86943D75E /* TideCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = B302A226E1B473D87BB887A5 /* TideCache.swift */; };
+		58E4A2DBBFCFF25A2F0D52B1 /* TideWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DED33D63BF689ED2B8EC1B3 /* TideWidget.swift */; };
+		59A489311B66F5C779444D2A /* WorldTidesClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268D91596F2F0C8EDB5A4657 /* WorldTidesClient.swift */; };
+		68F777784608D676B0B5C92A /* TidalForce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E37CB377248480F5A7995B1 /* TidalForce.swift */; };
+		74EF4B64E13FE43CA7029D84 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECFCCA7B9940FDC7F0A5398 /* ContentView.swift */; };
+		75FB7AEFC65EDCD888AA1A06 /* Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1153DEDB7DABE4C4A2C3E6DB /* Types.swift */; };
+		86B4743BC953B9C41EDC7FE8 /* GlobeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7BBEC37D33D35B05FD6C51 /* GlobeView.swift */; };
+		8CF1902593088812BF4BD19C /* PaywallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93C5F117ADE21BF943F2282 /* PaywallView.swift */; };
+		8EDD598B875AFF5F506A3566 /* Ephemeris.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F49E7127D1B06536335B194 /* Ephemeris.swift */; };
+		9012B8E514E417EE462E9096 /* Phase3Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF00C9877190BEF3579F3FE /* Phase3Tests.swift */; };
+		98E30CE8795DA90CA22F2B05 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB7DD81C75BD76674306A32 /* LocationManager.swift */; };
+		A63CFBB772AB54DA7678E699 /* TideEngineWidget.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = B277BAC647F73304D9E60185 /* TideEngineWidget.appex */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D66CE45FDC9BB333066CC58B /* Ephemeris.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F49E7127D1B06536335B194 /* Ephemeris.swift */; };
+		D6BD3562CED309FF7E808316 /* NOAAClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB0C74BB9C2A7D971D372E9 /* NOAAClient.swift */; };
+		DAA8DB9CAF9365F6E7BE30DD /* GlobeScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A463807A9AC9C6D52AE7CB81 /* GlobeScene.swift */; };
+		DC0370556EE295A03719E2C5 /* TideModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848103B5B5169DB70604A28E /* TideModels.swift */; };
+		E046B5DAC87B1A22F29E33DE /* TideDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB7DC46CC929C89D7E6C59F /* TideDataService.swift */; };
+		E0FBE04AA06F1213BD6B09E5 /* HeightFieldRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850B6CAB9EBD7B1DA50C9DB8 /* HeightFieldRenderer.swift */; };
+		E4FD2B43C5DEDE7BC4CE88F5 /* Configuration.storekit in Resources */ = {isa = PBXBuildFile; fileRef = FE844835F9809A23C91007A5 /* Configuration.storekit */; };
+		E6E6D8EC9B32D0F56C05B0C2 /* TideChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC9AF2C0CFB8FA3FB2945E83 /* TideChartView.swift */; };
+		EBC1618ECF9687779B87A65B /* LocalTideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD5143B851DD0FBB3F8B54B /* LocalTideView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		4F18CCA8DC465C089F11A551 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 98BE056840CDDA1479D9CB60 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7B647E53A5EFD925BF1CC9AB;
+			remoteInfo = TideEngineWidget;
+		};
+		B39F388A3B5CB1CE2B155547 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 98BE056840CDDA1479D9CB60 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 81F66BB9609912DAE92EAD64;
+			remoteInfo = TideEngine;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		5CCB0E0ADC05F8455BAB09D0 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				A63CFBB772AB54DA7678E699 /* TideEngineWidget.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		00DB526853ECF2DD5705A0E0 /* StoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreManager.swift; sourceTree = "<group>"; };
+		0C9E1408F846471C66FA4498 /* TideEngineWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TideEngineWidget.entitlements; sourceTree = "<group>"; };
+		0CB0C74BB9C2A7D971D372E9 /* NOAAClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NOAAClient.swift; sourceTree = "<group>"; };
+		10600BD904CF0971AF9C4269 /* Shaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
+		1153DEDB7DABE4C4A2C3E6DB /* Types.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Types.swift; sourceTree = "<group>"; };
+		1548802F048D23EB03F6CB8F /* TideEngineApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TideEngineApp.swift; sourceTree = "<group>"; };
+		268D91596F2F0C8EDB5A4657 /* WorldTidesClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldTidesClient.swift; sourceTree = "<group>"; };
+		2AB7DC46CC929C89D7E6C59F /* TideDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TideDataService.swift; sourceTree = "<group>"; };
+		2EF00C9877190BEF3579F3FE /* Phase3Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Phase3Tests.swift; sourceTree = "<group>"; };
+		3A4D097B5C396F793793CE31 /* CoastlineResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoastlineResolver.swift; sourceTree = "<group>"; };
+		5DBD881378CFAAC58CA4C971 /* TideEngineTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = TideEngineTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5F49E7127D1B06536335B194 /* Ephemeris.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ephemeris.swift; sourceTree = "<group>"; };
+		61E53A33F0BC6884BCF86D9D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		64DAE458FBC4C785779C46E9 /* TideWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TideWidgetBundle.swift; sourceTree = "<group>"; };
+		848103B5B5169DB70604A28E /* TideModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TideModels.swift; sourceTree = "<group>"; };
+		850B6CAB9EBD7B1DA50C9DB8 /* HeightFieldRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeightFieldRenderer.swift; sourceTree = "<group>"; };
+		8DED33D63BF689ED2B8EC1B3 /* TideWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TideWidget.swift; sourceTree = "<group>"; };
+		8E37CB377248480F5A7995B1 /* TidalForce.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TidalForce.swift; sourceTree = "<group>"; };
+		90414C8A200F29B8A0E945C2 /* KeychainHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainHelper.swift; sourceTree = "<group>"; };
+		92F99F16FE00BEFD9BBF02AE /* CoastlineData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoastlineData.swift; sourceTree = "<group>"; };
+		9790A911C528BBA79B60D803 /* TideEngine.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = TideEngine.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9BB7DD81C75BD76674306A32 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		A463807A9AC9C6D52AE7CB81 /* GlobeScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobeScene.swift; sourceTree = "<group>"; };
+		A93C5F117ADE21BF943F2282 /* PaywallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaywallView.swift; sourceTree = "<group>"; };
+		AFD5143B851DD0FBB3F8B54B /* LocalTideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalTideView.swift; sourceTree = "<group>"; };
+		B277BAC647F73304D9E60185 /* TideEngineWidget.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = TideEngineWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		B2857A2949A71974A3D71C19 /* EphemerisTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EphemerisTests.swift; sourceTree = "<group>"; };
+		B302A226E1B473D87BB887A5 /* TideCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TideCache.swift; sourceTree = "<group>"; };
+		BC28FA5B6B1AE75FAB582F3B /* TideEngine.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TideEngine.entitlements; sourceTree = "<group>"; };
+		BECFCCA7B9940FDC7F0A5398 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		CC9AF2C0CFB8FA3FB2945E83 /* TideChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TideChartView.swift; sourceTree = "<group>"; };
+		DD7BBEC37D33D35B05FD6C51 /* GlobeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobeView.swift; sourceTree = "<group>"; };
+		E34A23A35D6D3F57BAEC8C76 /* TideAPITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TideAPITests.swift; sourceTree = "<group>"; };
+		FE844835F9809A23C91007A5 /* Configuration.storekit */ = {isa = PBXFileReference; path = Configuration.storekit; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		06FEB13350F6DFF28BDED7D1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9790A911C528BBA79B60D803 /* TideEngine.app */,
+				5DBD881378CFAAC58CA4C971 /* TideEngineTests.xctest */,
+				B277BAC647F73304D9E60185 /* TideEngineWidget.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		08ABF1B1A387F3BD180866D7 /* TideEngineTests */ = {
+			isa = PBXGroup;
+			children = (
+				B2857A2949A71974A3D71C19 /* EphemerisTests.swift */,
+				2EF00C9877190BEF3579F3FE /* Phase3Tests.swift */,
+				E34A23A35D6D3F57BAEC8C76 /* TideAPITests.swift */,
+			);
+			path = TideEngineTests;
+			sourceTree = "<group>";
+		};
+		1B7949F6713352EC050589BF /* Globe */ = {
+			isa = PBXGroup;
+			children = (
+				92F99F16FE00BEFD9BBF02AE /* CoastlineData.swift */,
+				A463807A9AC9C6D52AE7CB81 /* GlobeScene.swift */,
+				DD7BBEC37D33D35B05FD6C51 /* GlobeView.swift */,
+				850B6CAB9EBD7B1DA50C9DB8 /* HeightFieldRenderer.swift */,
+				10600BD904CF0971AF9C4269 /* Shaders.metal */,
+			);
+			path = Globe;
+			sourceTree = "<group>";
+		};
+		2348E037B0EE2E26608344C2 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				BECFCCA7B9940FDC7F0A5398 /* ContentView.swift */,
+				1548802F048D23EB03F6CB8F /* TideEngineApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		43589EAE9579C21E84E4C2B0 /* Ephemeris */ = {
+			isa = PBXGroup;
+			children = (
+				5F49E7127D1B06536335B194 /* Ephemeris.swift */,
+				8E37CB377248480F5A7995B1 /* TidalForce.swift */,
+				1153DEDB7DABE4C4A2C3E6DB /* Types.swift */,
+			);
+			path = Ephemeris;
+			sourceTree = "<group>";
+		};
+		49F43CB59773DC0C7AD8DECD /* TideEngine */ = {
+			isa = PBXGroup;
+			children = (
+				FE844835F9809A23C91007A5 /* Configuration.storekit */,
+				BC28FA5B6B1AE75FAB582F3B /* TideEngine.entitlements */,
+				2348E037B0EE2E26608344C2 /* App */,
+				43589EAE9579C21E84E4C2B0 /* Ephemeris */,
+				1B7949F6713352EC050589BF /* Globe */,
+				A081413F5309E3CB0261C1D0 /* LocalTide */,
+				7476E3444728CE96E58F1F88 /* Location */,
+				653DF65ED67AE6BA10AE711B /* Paywall */,
+				CF985A4C0F8775718F17E6C4 /* Resources */,
+				869C7D99D638556A5DB09D5B /* Tides */,
+			);
+			path = TideEngine;
+			sourceTree = "<group>";
+		};
+		653DF65ED67AE6BA10AE711B /* Paywall */ = {
+			isa = PBXGroup;
+			children = (
+				90414C8A200F29B8A0E945C2 /* KeychainHelper.swift */,
+				A93C5F117ADE21BF943F2282 /* PaywallView.swift */,
+				00DB526853ECF2DD5705A0E0 /* StoreManager.swift */,
+			);
+			path = Paywall;
+			sourceTree = "<group>";
+		};
+		7476E3444728CE96E58F1F88 /* Location */ = {
+			isa = PBXGroup;
+			children = (
+				3A4D097B5C396F793793CE31 /* CoastlineResolver.swift */,
+				9BB7DD81C75BD76674306A32 /* LocationManager.swift */,
+			);
+			path = Location;
+			sourceTree = "<group>";
+		};
+		869C7D99D638556A5DB09D5B /* Tides */ = {
+			isa = PBXGroup;
+			children = (
+				0CB0C74BB9C2A7D971D372E9 /* NOAAClient.swift */,
+				B302A226E1B473D87BB887A5 /* TideCache.swift */,
+				2AB7DC46CC929C89D7E6C59F /* TideDataService.swift */,
+				848103B5B5169DB70604A28E /* TideModels.swift */,
+				268D91596F2F0C8EDB5A4657 /* WorldTidesClient.swift */,
+			);
+			path = Tides;
+			sourceTree = "<group>";
+		};
+		8A28780C227898DB2222E334 = {
+			isa = PBXGroup;
+			children = (
+				49F43CB59773DC0C7AD8DECD /* TideEngine */,
+				08ABF1B1A387F3BD180866D7 /* TideEngineTests */,
+				ADDAB1BEAF1F6B22C6A2B646 /* TideEngineWidget */,
+				06FEB13350F6DFF28BDED7D1 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A081413F5309E3CB0261C1D0 /* LocalTide */ = {
+			isa = PBXGroup;
+			children = (
+				AFD5143B851DD0FBB3F8B54B /* LocalTideView.swift */,
+				CC9AF2C0CFB8FA3FB2945E83 /* TideChartView.swift */,
+			);
+			path = LocalTide;
+			sourceTree = "<group>";
+		};
+		ADDAB1BEAF1F6B22C6A2B646 /* TideEngineWidget */ = {
+			isa = PBXGroup;
+			children = (
+				61E53A33F0BC6884BCF86D9D /* Info.plist */,
+				0C9E1408F846471C66FA4498 /* TideEngineWidget.entitlements */,
+				8DED33D63BF689ED2B8EC1B3 /* TideWidget.swift */,
+				64DAE458FBC4C785779C46E9 /* TideWidgetBundle.swift */,
+			);
+			path = TideEngineWidget;
+			sourceTree = "<group>";
+		};
+		CF985A4C0F8775718F17E6C4 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		7B647E53A5EFD925BF1CC9AB /* TideEngineWidget */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 81CCD501C683074C287AD777 /* Build configuration list for PBXNativeTarget "TideEngineWidget" */;
+			buildPhases = (
+				81BAC5C5B1F3E67BAD392191 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TideEngineWidget;
+			packageProductDependencies = (
+			);
+			productName = TideEngineWidget;
+			productReference = B277BAC647F73304D9E60185 /* TideEngineWidget.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		81F66BB9609912DAE92EAD64 /* TideEngine */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8B0DA389D45A57CFEEFFD505 /* Build configuration list for PBXNativeTarget "TideEngine" */;
+			buildPhases = (
+				98DA21FB654F2922DDC8693C /* Sources */,
+				90CEC9762192AF572DA7EBF7 /* Resources */,
+				5CCB0E0ADC05F8455BAB09D0 /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A1629457FB2D13CDD23F06FE /* PBXTargetDependency */,
+			);
+			name = TideEngine;
+			packageProductDependencies = (
+			);
+			productName = TideEngine;
+			productReference = 9790A911C528BBA79B60D803 /* TideEngine.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E888187F5178B3930FA6A6F9 /* TideEngineTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 60B5E0A2B48CC2FE572115D8 /* Build configuration list for PBXNativeTarget "TideEngineTests" */;
+			buildPhases = (
+				C2909E4B306A6FCBE364AB0F /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DBAAB84FEC494572B39FFB8F /* PBXTargetDependency */,
+			);
+			name = TideEngineTests;
+			packageProductDependencies = (
+			);
+			productName = TideEngineTests;
+			productReference = 5DBD881378CFAAC58CA4C971 /* TideEngineTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		98BE056840CDDA1479D9CB60 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1540;
+				TargetAttributes = {
+				};
+			};
+			buildConfigurationList = 0F4674E563389DAB888F620C /* Build configuration list for PBXProject "TideEngine" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 8A28780C227898DB2222E334;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 06FEB13350F6DFF28BDED7D1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				81F66BB9609912DAE92EAD64 /* TideEngine */,
+				E888187F5178B3930FA6A6F9 /* TideEngineTests */,
+				7B647E53A5EFD925BF1CC9AB /* TideEngineWidget */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		90CEC9762192AF572DA7EBF7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E4FD2B43C5DEDE7BC4CE88F5 /* Configuration.storekit in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		81BAC5C5B1F3E67BAD392191 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D66CE45FDC9BB333066CC58B /* Ephemeris.swift in Sources */,
+				498DAD4A3404E84632A9E5DD /* TidalForce.swift in Sources */,
+				55684E06F5EACEF86943D75E /* TideCache.swift in Sources */,
+				DC0370556EE295A03719E2C5 /* TideModels.swift in Sources */,
+				58E4A2DBBFCFF25A2F0D52B1 /* TideWidget.swift in Sources */,
+				23E3A047A5C5FAE2BEED5F1A /* TideWidgetBundle.swift in Sources */,
+				75FB7AEFC65EDCD888AA1A06 /* Types.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		98DA21FB654F2922DDC8693C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0DEFB72D4592CA09DEE3C4C9 /* CoastlineData.swift in Sources */,
+				1A7A6A50A3EFE01806862D74 /* CoastlineResolver.swift in Sources */,
+				74EF4B64E13FE43CA7029D84 /* ContentView.swift in Sources */,
+				8EDD598B875AFF5F506A3566 /* Ephemeris.swift in Sources */,
+				DAA8DB9CAF9365F6E7BE30DD /* GlobeScene.swift in Sources */,
+				86B4743BC953B9C41EDC7FE8 /* GlobeView.swift in Sources */,
+				E0FBE04AA06F1213BD6B09E5 /* HeightFieldRenderer.swift in Sources */,
+				17C9DA8AC6EBE50A0A51371B /* KeychainHelper.swift in Sources */,
+				EBC1618ECF9687779B87A65B /* LocalTideView.swift in Sources */,
+				98E30CE8795DA90CA22F2B05 /* LocationManager.swift in Sources */,
+				D6BD3562CED309FF7E808316 /* NOAAClient.swift in Sources */,
+				8CF1902593088812BF4BD19C /* PaywallView.swift in Sources */,
+				239601520E3CC23B230B6007 /* Shaders.metal in Sources */,
+				1AA1968185591E0891742054 /* StoreManager.swift in Sources */,
+				68F777784608D676B0B5C92A /* TidalForce.swift in Sources */,
+				33A11BD3B3C7EC81549A4F71 /* TideCache.swift in Sources */,
+				E6E6D8EC9B32D0F56C05B0C2 /* TideChartView.swift in Sources */,
+				E046B5DAC87B1A22F29E33DE /* TideDataService.swift in Sources */,
+				07D16E2398C01320072CA103 /* TideEngineApp.swift in Sources */,
+				42BC9425633846E11AE73940 /* TideModels.swift in Sources */,
+				3A5E6816CE74D84D02222F52 /* Types.swift in Sources */,
+				59A489311B66F5C779444D2A /* WorldTidesClient.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C2909E4B306A6FCBE364AB0F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				02EC8257201CF1E137C51423 /* EphemerisTests.swift in Sources */,
+				9012B8E514E417EE462E9096 /* Phase3Tests.swift in Sources */,
+				4F68F6AD0C6DC719E06CAEE2 /* TideAPITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A1629457FB2D13CDD23F06FE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7B647E53A5EFD925BF1CC9AB /* TideEngineWidget */;
+			targetProxy = 4F18CCA8DC465C089F11A551 /* PBXContainerItemProxy */;
+		};
+		DBAAB84FEC494572B39FFB8F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 81F66BB9609912DAE92EAD64 /* TideEngine */;
+			targetProxy = B39F388A3B5CB1CE2B155547 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		29687CD89CEDFA473AC2C95D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.tideengine.TideEngineTests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TideEngine.app/TideEngine";
+			};
+			name = Release;
+		};
+		29DC8B9C6C0A65245DB00F9D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = TideEngineWidget/TideEngineWidget.entitlements;
+				INFOPLIST_FILE = TideEngineWidget/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.tideengine.TideEngine.widget;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		306FE7F985FAFA27E2195A0C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = TideEngineWidget/TideEngineWidget.entitlements;
+				INFOPLIST_FILE = TideEngineWidget/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.tideengine.TideEngine.widget;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		5F9B84E3D917DD705F7B15DF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = TideEngine/TideEngine.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Tide Engine uses your location to show real-time tides for your nearest coastline.";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.tideengine.TideEngine;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		656FD9CDB72653D41C8D696D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 5.10;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		6BB4B60E71BCED04C261ADB3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = TideEngine/TideEngine.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Tide Engine uses your location to show real-time tides for your nearest coastline.";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.tideengine.TideEngine;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		9AFCE62D37C566901E74D6A3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.tideengine.TideEngineTests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TideEngine.app/TideEngine";
+			};
+			name = Debug;
+		};
+		CE3DD06A3271E3D90CBCCB0D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 5.10;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0F4674E563389DAB888F620C /* Build configuration list for PBXProject "TideEngine" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				656FD9CDB72653D41C8D696D /* Debug */,
+				CE3DD06A3271E3D90CBCCB0D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		60B5E0A2B48CC2FE572115D8 /* Build configuration list for PBXNativeTarget "TideEngineTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9AFCE62D37C566901E74D6A3 /* Debug */,
+				29687CD89CEDFA473AC2C95D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		81CCD501C683074C287AD777 /* Build configuration list for PBXNativeTarget "TideEngineWidget" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				306FE7F985FAFA27E2195A0C /* Debug */,
+				29DC8B9C6C0A65245DB00F9D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		8B0DA389D45A57CFEEFFD505 /* Build configuration list for PBXNativeTarget "TideEngine" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5F9B84E3D917DD705F7B15DF /* Debug */,
+				6BB4B60E71BCED04C261ADB3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 98BE056840CDDA1479D9CB60 /* Project object */;
+}
