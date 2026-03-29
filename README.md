@@ -1,80 +1,54 @@
-![Swift](https://img.shields.io/badge/Swift-5.10-orange?logo=swift) ![iOS](https://img.shields.io/badge/iOS-17.0%2B-blue?logo=apple) ![License](https://img.shields.io/badge/license-MIT-green)
-
 # Tide Engine
 
-A tidal simulation app for iPhone that combines real-time gravitational physics with live NOAA station data. Spin an interactive 3D globe, tap any coastline, and get a physics-driven tidal breakdown for that location alongside official tide predictions.
+[![Swift](https://img.shields.io/badge/Swift-f05138?style=flat-square&logo=swift)](#) [![License](https://img.shields.io/badge/license-MIT-blue?style=flat-square)](#)
+
+> The ocean on your phone, physics and all
+
+Tide Engine is an iOS tidal simulation app that pairs a real-time gravitational physics engine with live NOAA station data. Spin a 3D globe, tap any coastline, and see a physics-driven tidal breakdown alongside official tide predictions.
 
 ## Features
 
-- **Interactive 3D Globe** — SceneKit-rendered Earth with coastline data and a live tidal height field derived from real-time lunar and solar positions. The height field updates every 0.5 seconds as the Moon and Sun move.
-- **Gravitational physics engine** — Moon position computed using Meeus ELP 2000/82 (truncated), Sun position via VSOP87 truncated series. No third-party astronomy libraries.
-- **Local tide detail view** — Tap any point on the globe to see gravitational pull percentage, surface displacement, Moon angle, a 7-day tide height chart, and upcoming high/low predictions.
-- **NOAA + WorldTides data** — Fetches tide predictions from NOAA CO-OPS (US stations) with WorldTides as a fallback for international locations. Predictions are cached on-device for 24 hours.
-- **Home Screen Widget** — Small and medium WidgetKit widgets showing current gravitational pull gauge and next tide time/height. Widget uses the shared App Group cache so no network call is needed.
-- **In-App Purchase** — International tide data (WorldTides) is an optional unlock via StoreKit 2.
+- **Interactive 3D globe** — SceneKit-rendered Earth with a live tidal height field updating every 0.5 seconds as the Moon and Sun move
+- **Custom ephemeris engine** — Moon position via Meeus ELP 2000/82 (truncated), Sun position via VSOP87; no third-party astronomy libraries
+- **Local tide detail** — gravitational pull percentage, surface displacement, Moon angle, a 7-day height chart, and upcoming high/low times
+- **NOAA + WorldTides data** — fetches official predictions from NOAA CO-OPS for US stations; WorldTides as international fallback, cached 24 hours on-device
+- **Home screen widget** — small and medium WidgetKit widgets showing current gravitational pull gauge and next tide time via shared App Group cache
+- **In-app purchase** — international WorldTides data as an optional StoreKit 2 unlock
+
+## Quick Start
+
+### Prerequisites
+- Xcode 16+
+- iOS 17.0+ device or simulator
+- XcodeGen: `brew install xcodegen`
+
+### Installation
+```bash
+git clone https://github.com/saagpatel/TideEngine
+cd TideEngine
+xcodegen generate
+open TideEngine.xcodeproj
+```
+
+### Usage
+Build and run the `TideEngine` scheme on a device or simulator.
 
 ## Tech Stack
 
 | Layer | Technology |
-|-------|-----------|
+|-------|------------|
 | Language | Swift 5.10, strict concurrency |
-| UI | SwiftUI, SceneKit (globe), Metal (height field shader) |
+| UI | SwiftUI + SceneKit (globe) + Metal (height field shader) |
 | Data | NOAA CO-OPS REST API, WorldTides API |
-| Astronomy | Custom Meeus/VSOP87 ephemeris (no external deps) |
-| Widget | WidgetKit, App Groups shared cache |
+| Astronomy | Custom Meeus/VSOP87 ephemeris |
+| Widget | WidgetKit + App Groups |
 | Payments | StoreKit 2 |
-| Tooling | XcodeGen (`project.yml`) |
+| Project config | XcodeGen |
 
-## Prerequisites
+## Architecture
 
-- Xcode 15.4 or later
-- iOS 17.0+ device or simulator
-- [XcodeGen](https://github.com/yonaskolb/XcodeGen) (`brew install xcodegen`)
-- A free [NOAA CO-OPS](https://api.tidesandcurrents.noaa.gov/) API key is not required for US stations
-- Optional: WorldTides API key for international data (set via environment or config)
-
-## Getting Started
-
-```bash
-# 1. Clone
-git clone https://github.com/saagpatel/TideEngine.git
-cd TideEngine
-
-# 2. Generate the Xcode project
-xcodegen generate
-
-# 3. Open in Xcode
-open TideEngine.xcodeproj
-```
-
-Build and run the **TideEngine** scheme on a simulator or device. The globe loads immediately; tide predictions require a network connection on first launch and are cached thereafter.
-
-## Project Structure
-
-```
-TideEngine/
-├── TideEngine/
-│   ├── App/                  # App entry point, ContentView
-│   ├── Ephemeris/            # Moon (ELP 2000/82) + Sun (VSOP87) position engine
-│   ├── Globe/                # SceneKit globe, Metal height field renderer, coastline data
-│   ├── LocalTide/            # Detail view: gravitational pull, tide chart, predictions
-│   ├── Location/             # CoreLocation manager, coastline resolver
-│   ├── Tides/                # NOAA + WorldTides API clients, data service, cache
-│   └── Paywall/              # StoreKit 2 IAP, paywall UI, Keychain helper
-├── TideEngineWidget/         # WidgetKit extension (small + medium)
-├── TideEngineTests/          # Unit tests (ephemeris, tide API, Phase 3 scenarios)
-└── project.yml               # XcodeGen project spec
-```
-
-## Screenshots
-
-<!-- Add screenshots here -->
-| Globe | Local Tide | Widget |
-|-------|-----------|--------|
-| _coming soon_ | _coming soon_ | _coming soon_ |
+The physics engine runs on a dedicated `Task` at 2 Hz, computing lunar and solar unit vectors and the tidal potential field across a 64×32 latitude/longitude grid. The Metal shader reads this grid as a texture and displaces the globe mesh vertices in real time. NOAA data is fetched lazily on coastline tap, decoded with a custom `Codable` pipeline, and cached in App Group UserDefaults for sharing with the WidgetKit extension.
 
 ## License
 
-MIT License — see [LICENSE](LICENSE) for details.
-
-Copyright (c) 2026 Saag Patel
+MIT
