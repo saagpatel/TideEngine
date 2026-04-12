@@ -19,9 +19,12 @@ targets:
     platform: iOS
     sources:
       - TideEngine
+    resources:
+      - path: TideEngine/Resources/PrivacyInfo.xcprivacy
     settings:
       base:
         GENERATE_INFOPLIST_FILE: YES
+        DEVELOPMENT_TEAM: 3TGZFKFNA4
         INFOPLIST_KEY_NSLocationWhenInUseUsageDescription: "Tide Engine uses your location to show real-time tides for your nearest coastline."
         INFOPLIST_KEY_UILaunchScreen_Generation: true
         INFOPLIST_KEY_UIApplicationSceneManifest_Generation: true

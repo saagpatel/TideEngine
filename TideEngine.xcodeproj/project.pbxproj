@@ -32,6 +32,7 @@
 		9012B8E514E417EE462E9096 /* Phase3Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF00C9877190BEF3579F3FE /* Phase3Tests.swift */; };
 		98E30CE8795DA90CA22F2B05 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB7DD81C75BD76674306A32 /* LocationManager.swift */; };
 		A63CFBB772AB54DA7678E699 /* TideEngineWidget.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = B277BAC647F73304D9E60185 /* TideEngineWidget.appex */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B6E7F5B9BDBCE9DA9BD4A6DB /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = C3C6E7A964FD2A86BF7D4B9E /* PrivacyInfo.xcprivacy */; };
 		D66CE45FDC9BB333066CC58B /* Ephemeris.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F49E7127D1B06536335B194 /* Ephemeris.swift */; };
 		D6BD3562CED309FF7E808316 /* NOAAClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB0C74BB9C2A7D971D372E9 /* NOAAClient.swift */; };
 		DAA8DB9CAF9365F6E7BE30DD /* GlobeScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A463807A9AC9C6D52AE7CB81 /* GlobeScene.swift */; };
@@ -105,6 +106,7 @@
 		B302A226E1B473D87BB887A5 /* TideCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TideCache.swift; sourceTree = "<group>"; };
 		BC28FA5B6B1AE75FAB582F3B /* TideEngine.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TideEngine.entitlements; sourceTree = "<group>"; };
 		BECFCCA7B9940FDC7F0A5398 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		C3C6E7A964FD2A86BF7D4B9E /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		CC9AF2C0CFB8FA3FB2945E83 /* TideChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TideChartView.swift; sourceTree = "<group>"; };
 		DD7BBEC37D33D35B05FD6C51 /* GlobeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobeView.swift; sourceTree = "<group>"; };
 		E34A23A35D6D3F57BAEC8C76 /* TideAPITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TideAPITests.swift; sourceTree = "<group>"; };
@@ -244,6 +246,7 @@
 		CF985A4C0F8775718F17E6C4 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C3C6E7A964FD2A86BF7D4B9E /* PrivacyInfo.xcprivacy */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -315,6 +318,9 @@
 				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1540;
 				TargetAttributes = {
+					81F66BB9609912DAE92EAD64 = {
+						DevelopmentTeam = 3TGZFKFNA4;
+					};
 				};
 			};
 			buildConfigurationList = 0F4674E563389DAB888F620C /* Build configuration list for PBXProject "TideEngine" */;
@@ -344,6 +350,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E4FD2B43C5DEDE7BC4CE88F5 /* Configuration.storekit in Resources */,
+				B6E7F5B9BDBCE9DA9BD4A6DB /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -474,6 +481,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = TideEngine/TideEngine.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = 3TGZFKFNA4;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Tide Engine uses your location to show real-time tides for your nearest coastline.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -560,6 +568,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = TideEngine/TideEngine.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = 3TGZFKFNA4;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Tide Engine uses your location to show real-time tides for your nearest coastline.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
