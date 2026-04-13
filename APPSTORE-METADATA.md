@@ -70,13 +70,13 @@ A real-time gravitational tide simulation on a 3D globe. Tap any coastline for N
 
 ## Support URL
 
-*(Enter your support URL — e.g. a GitHub repo or personal site)*
+https://github.com/saagpatel/TideEngine/issues
 
 ---
 
 ## Privacy Policy URL
 
-*(Required — host a static page; note location data is only used in-memory for API queries)*
+https://github.com/saagpatel/TideEngine/blob/main/PRIVACY.md
 
 ---
 
