@@ -165,3 +165,6 @@ No reviewer credentials required for US functionality. For IAP testing, use Appl
 - [ ] NOAA data verified for San Francisco station (9414290) — high/low times match NOAA website within ±10 min
 - [ ] TestFlight build accepted by App Store Connect before full review submission
 - [ ] Submit for Review
+
+## Copyright
+© 2026 saagpatel
