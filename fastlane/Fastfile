@@ -1,0 +1,18 @@
+platform :ios do
+  lane :fix_widget_groups do
+    app_store_connect_api_key(
+      key_id: "6NPVH55ZWG",
+      issuer_id: "fd4f140d-508c-4f9d-9984-8e088cccc10a",
+      key_filepath: File.expand_path("~/.appstoreconnect/private_keys/AuthKey_6NPVH55ZWG.p8"),
+      in_house: false
+    )
+    
+    get_provisioning_profile(
+      app_identifier: "com.tideengine.TideEngine.widget",
+      provisioning_name: "TideEngine Widget App Store",
+      force: true,
+      output_path: File.expand_path("~/Library/MobileDevice/Provisioning Profiles/"),
+      filename: "TideEngine_Widget_App_Store.mobileprovision"
+    )
+  end
+end
