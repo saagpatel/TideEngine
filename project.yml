@@ -29,13 +29,14 @@ targets:
         INFOPLIST_KEY_UIApplicationSceneManifest_Generation: true
         INFOPLIST_KEY_UISupportedInterfaceOrientations: "UIInterfaceOrientationPortrait"
         CODE_SIGN_ENTITLEMENTS: TideEngine/TideEngine.entitlements
+        CODE_SIGN_STYLE: Manual
+        CODE_SIGN_IDENTITY: "Apple Distribution"
+        PROVISIONING_PROFILE_SPECIFIER: "TideEngine App Store"
     entitlements:
       path: TideEngine/TideEngine.entitlements
       properties:
         com.apple.security.application-groups:
           - group.com.tideengine
-        com.apple.developer.in-app-payments:
-          - com.tideengine.international
     dependencies:
       - target: TideEngineWidget
         embed: true
@@ -56,6 +57,10 @@ targets:
         INFOPLIST_FILE: TideEngineWidget/Info.plist
         PRODUCT_BUNDLE_IDENTIFIER: com.tideengine.TideEngine.widget
         CODE_SIGN_ENTITLEMENTS: TideEngineWidget/TideEngineWidget.entitlements
+        CODE_SIGN_STYLE: Manual
+        CODE_SIGN_IDENTITY: "Apple Distribution"
+        PROVISIONING_PROFILE_SPECIFIER: "TideEngine Widget App Store"
+        DEVELOPMENT_TEAM: 3TGZFKFNA4
     entitlements:
       path: TideEngineWidget/TideEngineWidget.entitlements
       properties:
