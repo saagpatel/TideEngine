@@ -26,13 +26,13 @@ coastline cuts to a local tide detail view powered by NOAA CO-OPS (US, free) or 
 - All API calls wrapped in do/catch with user-facing error handling (no silent failures)
 
 ## Current Phase
-**Phase 0: Foundation + Metal Shader Proof**
-See IMPLEMENTATION-ROADMAP.md for full phase details, acceptance criteria, and verification checklist.
+**Complete — all 4 phases shipped (v1.0)**
+See IMPLEMENTATION-ROADMAP.md for full phase details and HANDOFF.md for build stats and next steps.
 
 ## Key Decisions
 | Decision | Choice | Why |
 |---|---|---|
-| Ephemeris | Pure-Swift VSOP87 truncated | Fully offline, no external dependency, validatable |
+| Ephemeris | Meeus ELP2000/82 (Moon) + VSOP87 (Sun) | Fully offline, no external dependency, validatable |
 | International data | WorldTides API v3 | Global coverage, per-user caching allowed, clean REST |
 | Globe transition | Cut (0.4s camera zoom → hard cut) | Reliable, cinematic; morph was a UX risk |
 | Visual language | Luminous dark — indigo/teal/white-hot gradient | Differentiates from every realistic tide app |
@@ -60,8 +60,8 @@ coastline cuts to a local tide detail view powered by NOAA CO-OPS (US, free) or 
 
 ## Current State
 
-**Phase 0: Foundation + Metal Shader Proof**
-See IMPLEMENTATION-ROADMAP.md for full phase details, acceptance criteria, and verification checklist.
+**Complete — all 4 phases shipped (v1.0)**
+See HANDOFF.md for build stats (36 files, 4835 lines, 62 tests) and next steps.
 
 ## Stack
 
@@ -90,6 +90,6 @@ Build and run the `TideEngine` scheme on a device or simulator.
 
 ## Next Recommended Move
 
-Finish the Phase 0 foundation and Metal shader proof from `IMPLEMENTATION-ROADMAP.md`, then verify SceneKit geometry, Metal heightfield rendering, NOAA/WorldTides caching, and WidgetKit shared-data boundaries before adding later features.
+Physical device testing (Metal + Widget may differ from simulator), replace placeholder WorldTides API key, complete App Store Connect metadata (privacy policy, screenshots, privacy labels), and archive for App Store submission.
 
 <!-- portfolio-context:end -->
