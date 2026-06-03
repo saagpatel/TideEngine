@@ -47,7 +47,7 @@ Build and run the `TideEngine` scheme on a device or simulator.
 
 ## Architecture
 
-The physics engine runs on a dedicated `Task` at 2 Hz, computing lunar and solar unit vectors and the tidal potential field across a 64×32 latitude/longitude grid. The Metal shader reads this grid as a texture and displaces the globe mesh vertices in real time. NOAA data is fetched lazily on coastline tap, decoded with a custom `Codable` pipeline, and cached in App Group UserDefaults for sharing with the WidgetKit extension.
+The tidal heightfield recomputes at ~2 Hz (every 0.5 s) via `SCNSceneRendererDelegate`'s `renderer(_:updateAtTime:)` callback, computing lunar and solar unit vectors and the tidal potential field across a 64×32 latitude/longitude grid. A Metal compute shader upsamples this grid to a 512×256 color texture that drives the sphere's emission material in real time. NOAA data is fetched lazily on coastline tap, decoded with a custom `Codable` pipeline, and cached in App Group UserDefaults for sharing with the WidgetKit extension.
 
 ## License
 
