@@ -79,3 +79,8 @@ Build and run the `TideEngine` scheme on a device or simulator.
 Physical device testing (Metal + Widget may differ from simulator), replace placeholder WorldTides API key, complete App Store Connect metadata (privacy policy, screenshots, privacy labels), and archive for App Store submission.
 
 <!-- portfolio-context:end -->
+
+<!-- secondbrain-breadcrumb -->
+## SecondBrain knowledge vault
+
+Prior lessons, decisions, and context for this project live in SecondBrain at `wiki/maps/projects/tide-engine.md`. The whole vault is searchable via the `engraph` MCP — query it for this project + its stack before non-trivial work.
