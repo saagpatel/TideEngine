@@ -17,7 +17,7 @@ jobs:
           xcodebuild test \
             -scheme TideEngine \
             -project TideEngine.xcodeproj \
-            -destination 'platform=iOS Simulator,name=iPhone 16 Pro' \
+            -destination 'platform=iOS Simulator,name=iPhone 17' \
             CODE_SIGNING_ALLOWED=NO
       - name: Release build
         run: |

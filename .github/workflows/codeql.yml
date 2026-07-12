@@ -20,4 +20,10 @@ jobs:
       - uses: github/codeql-action/init@v4
         with:
           languages: swift
+      - run: |
+          xcodebuild build \
+            -scheme TideEngine \
+            -project TideEngine.xcodeproj \
+            -destination 'generic/platform=iOS' \
+            CODE_SIGNING_ALLOWED=NO
       - uses: github/codeql-action/analyze@v4
