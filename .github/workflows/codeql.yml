@@ -21,9 +21,12 @@ jobs:
         with:
           languages: swift
       - run: |
+          # CodeQL analyzes Swift only. Ordinary CI compiles Shaders.metal; the
+          # hosted CodeQL environment does not include the optional Metal toolchain.
           xcodebuild build \
             -scheme TideEngine \
             -project TideEngine.xcodeproj \
             -destination 'platform=iOS Simulator,name=iPhone 17' \
+            EXCLUDED_SOURCE_FILE_NAMES=Shaders.metal \
             CODE_SIGNING_ALLOWED=NO
       - uses: github/codeql-action/analyze@v4
