@@ -1,40 +1,26 @@
-# Tide Engine — Session Handoff
+# Tide Engine — Release Handoff
 
-## Status: Complete (v1.0 feature-complete)
+## Current state
 
-## Branch: `main` (merged from `feat/phase0-foundation-metal-shader`)
+The hardened v1 product is an iPhone app with an interactive gravitational visualization, NOAA predictions near supported stations, and a WidgetKit extension. The unsafe client-side WorldTides credential and mutable purchase-unlock path have been removed. There is no in-app purchase in this build.
 
-## Completed This Session
+## Verified locally
 
-All 4 phases built from scratch in a single session:
+- XcodeGen project generation
+- 49 unit tests on iPhone 17 Pro simulator
+- Release build and unsigned archive
+- Main and widget privacy manifests bundled
+- Opaque 1024×1024 app icon
+- Simulator launch and visual inspection
+- Bundle IDs: `com.tideengine.app` and `com.tideengine.app.widget`
+- App Group: `group.com.tideengine`
 
-- **Phase 0**: Meeus ELP2000/82 Moon + VSOP87 Sun ephemeris, Metal compute shader (bilinear interp + tidal gradient), SceneKit globe
-- **Phase 1**: 60fps animation via SCNSceneRendererDelegate, GMST-driven rotation + contentsTransform counter-rotation, 1180-vertex Natural Earth coastlines, tap→CoastlineResolver→LocalTideView
-- **Phase 2**: NOAAClient (station lookup via Haversine, hi/lo + hourly predictions), TideCache (App Group UserDefaults, 24h expiry), TideChartView (Swift Charts 7-day curve), LocationManager (first-launch auto-nav)
-- **Phase 3**: WidgetKit (real timeline with ephemeris pull + cached predictions), StoreKit 2 IAP ($2.99 one-time), WorldTidesClient (API v3, Keychain-stored key), PaywallView, NOAA→WorldTides routing at 200km threshold
+## Release-owner work still required
 
-**Stats**: 36 files changed, 4835 lines, 62 tests (23 ephemeris + 18 tide API + 21 Phase 3), BUILD SUCCEEDED
+1. Confirm the bundle IDs and App Group in Apple Developer and App Store Connect.
+2. Resolve signing/provisioning and run a signed archive plus Validate App.
+3. Test Metal rendering, location states, NOAA data, offline cache, and both widgets on physical devices.
+4. Confirm the App Store privacy label and metadata against `PRIVACY.md` and `APPSTORE-METADATA.md`.
+5. Capture current screenshots and complete TestFlight review.
 
-## In Progress: None
-
-## Blocked: None
-
-## Next Steps
-
-1. **Physical device testing** — Metal + Widget behavior may differ from simulator
-2. **Verify contentsTransform sign** — DEBUG log prints GMST on first frame; check if tidal bulge stays fixed
-3. **Replace placeholder API key** — XOR-encode real WorldTides key in StoreManager.provisionWorldTidesKey()
-4. **App Store Connect** — privacy policy URL, metadata, screenshots, privacy labels, archive validation
-5. **Delete feature branch** — `git branch -d feat/phase0-foundation-metal-shader`
-
-## Key Decisions
-
-| Decision | Choice | Why |
-|---|---|---|
-| Moon ephemeris | Meeus ELP2000/82 (not VSOP87) | VSOP87 has no lunar series — roadmap was wrong |
-| Earth rotation | Approach B: rotate sphere + contentsTransform | Continents ride as children, texture stays fixed |
-| Tidal field update rate | 0.5s throttle (not 60fps) | Moon moves 0.5°/hour — 60fps recomputation is waste |
-| NOAA data | Two concurrent requests (hilo + hourly) | Smooth chart curve without interpolation artifacts |
-| US/International detection | Haversine distance > 200km from nearest NOAA station | Simple, no hardcoded boundary data |
-| Widget data | Cache-only, no API calls | WidgetKit best practice, ephemeris computed offline |
-| API key storage | Keychain with obfuscated provisioning after purchase | CLAUDE.md: never in UserDefaults/plist/source |
+Do not restore a third-party global tide API key in the client. Any future paid global-data feature needs a server-verified entitlement and credential broker with its own privacy and operational review.

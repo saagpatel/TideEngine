@@ -1,10 +1,9 @@
 import Foundation
-import SceneKit
+@preconcurrency import SceneKit
 import UIKit
 import CoreLocation
 
-final class GlobeScene {
-    private static var hasLoggedRotation = false
+final class GlobeScene: @unchecked Sendable {
     let scene: SCNScene
     let cameraNode: SCNNode
     private let sphereNode: SCNNode
@@ -26,11 +25,11 @@ final class GlobeScene {
 
         let material = SCNMaterial()
         material.lightingModel = .phong
-        material.diffuse.contents = UIColor(red: 0.04, green: 0.055, blue: 0.10, alpha: 1.0)
+        material.diffuse.contents = UIColor(red: 0.035, green: 0.16, blue: 0.24, alpha: 1.0)
         material.emission.contents = renderer.outputTexture
-        material.emission.intensity = 1.0
-        material.shininess = 0.0
-        material.specular.contents = UIColor(white: 0.15, alpha: 1.0)
+        material.emission.intensity = 0.72
+        material.shininess = 0.2
+        material.specular.contents = UIColor(white: 0.35, alpha: 1.0)
         material.isDoubleSided = false
         sphere.materials = [material]
 
@@ -48,14 +47,14 @@ final class GlobeScene {
 
         let cameraNode = SCNNode()
         cameraNode.camera = camera
-        cameraNode.position = SCNVector3(0, 0, 3)
+        cameraNode.position = SCNVector3(0, 0, 4)
         self.cameraNode = cameraNode
         scene.rootNode.addChildNode(cameraNode)
 
         // --- Ambient light ---
         let ambient = SCNLight()
         ambient.type = .ambient
-        ambient.intensity = 100
+        ambient.intensity = 420
         ambient.color = UIColor.white
 
         let ambientNode = SCNNode()
@@ -98,12 +97,6 @@ final class GlobeScene {
             node.eulerAngles.y = gmstRad
             let uOffset = Float(gmstDeg / 360.0)
             self.emissionProperty.contentsTransform = SCNMatrix4MakeTranslation(uOffset, 0, 0)
-            #if DEBUG
-            if !GlobeScene.hasLoggedRotation {
-                GlobeScene.hasLoggedRotation = true
-                print("[GlobeScene] GMST=\(gmstDeg)° eulerAngles.y=\(gmstRad) uOffset=\(uOffset)")
-            }
-            #endif
         }
         sphereNode.runAction(SCNAction.repeatForever(rotateAction))
     }

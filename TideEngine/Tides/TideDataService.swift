@@ -26,14 +26,10 @@ actor TideDataService {
             return try await loadNOAAData(station: noaaStation)
         }
 
-        // 3. International — check unlock
-        let suite = UserDefaults(suiteName: "group.com.tideengine")!
-        guard suite.bool(forKey: "internationalUnlocked") else {
-            throw TideError.internationalLocked
-        }
-
-        // 4. Fetch from WorldTides
-        return try await loadWorldTidesData(coordinate: coordinate)
+        // International data previously depended on an extractable client-side
+        // vendor credential. Keep the release honest until a server-verified
+        // credential broker exists.
+        throw TideError.unsupportedRegion
     }
 
     private func loadNOAAData(station: TideStation) async throws -> TideResult {
@@ -89,53 +85,4 @@ actor TideDataService {
         }
     }
 
-    private func loadWorldTidesData(coordinate: CLLocationCoordinate2D) async throws -> TideResult {
-        let stationId = "wt-\(coordinate.latitude)-\(coordinate.longitude)"
-
-        // Check cache first
-        if let cached = TideCache.loadPredictions(stationId: stationId) {
-            let station = TideStation(
-                id: stationId,
-                name: cached.stationName,
-                latitude: coordinate.latitude,
-                longitude: coordinate.longitude,
-                dataSource: .worldTides
-            )
-            return TideResult(
-                station: station,
-                predictions: cached.predictions,
-                hourlyCurve: cached.hourlyCurve,
-                isFromCache: true,
-                cachedAt: cached.fetchedAt
-            )
-        }
-
-        // Fetch from WorldTides (extremes only — no hourly data available)
-        let predictions = try await WorldTidesClient.shared.fetchPredictions(coordinate: coordinate)
-        guard let firstPred = predictions.first else {
-            throw TideError.noData("No predictions from WorldTides")
-        }
-
-        let station = firstPred.station
-        TideCache.saveLastStation(station)
-
-        let now = Date.now
-        let cacheEntry = CachedTideData(
-            stationId: station.id,
-            stationName: station.name,
-            predictions: predictions,
-            hourlyCurve: [],  // WorldTides has no hourly
-            fetchedAt: now,
-            expiresAt: now.addingTimeInterval(86400)
-        )
-        TideCache.savePredictions(cacheEntry)
-
-        return TideResult(
-            station: station,
-            predictions: predictions,
-            hourlyCurve: [],
-            isFromCache: false,
-            cachedAt: nil
-        )
-    }
 }

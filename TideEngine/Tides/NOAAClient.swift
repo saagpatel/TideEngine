@@ -5,9 +5,10 @@ actor NOAAClient {
     static let shared = NOAAClient()
 
     private let session: URLSession
-    private static let baseURL = "https://api.tidesandcurrents.noaa.gov"
+    private static let apiHost = "api.tidesandcurrents.noaa.gov"
+    private static let maximumResponseBytes = 10 * 1_024 * 1_024
 
-    init(session: URLSession = .shared) {
+    init(session: URLSession = NOAAClient.makeSession()) {
         self.session = session
     }
 
@@ -41,10 +42,13 @@ actor NOAAClient {
             return cached
         }
 
-        let urlString = "\(Self.baseURL)/mdapi/prod/webapi/stations.json?type=tidepredictions&units=english"
-        guard let url = URL(string: urlString) else {
-            throw TideError.networkError("Invalid station list URL")
-        }
+        let url = try Self.makeURL(
+            path: "/mdapi/prod/webapi/stations.json",
+            queryItems: [
+                URLQueryItem(name: "type", value: "tidepredictions"),
+                URLQueryItem(name: "units", value: "english")
+            ]
+        )
 
         let data: Data
         do {
@@ -52,6 +56,9 @@ actor NOAAClient {
             guard let httpResponse = response as? HTTPURLResponse,
                   (200..<300).contains(httpResponse.statusCode) else {
                 throw TideError.networkError("HTTP error fetching station list")
+            }
+            guard responseData.count <= Self.maximumResponseBytes else {
+                throw TideError.networkError("NOAA station response exceeded the safe size limit")
             }
             data = responseData
         } catch let error as TideError {
@@ -77,11 +84,7 @@ actor NOAAClient {
 
     func fetchHiLoPredictions(station: TideStation, startDate: Date) async throws -> [TidePrediction] {
         let beginDate = Self.beginDateString(from: startDate)
-        let urlString = "\(Self.baseURL)/api/prod/datagetter?product=predictions&datum=MLLW&time_zone=lst_ldt&interval=hilo&units=metric&format=json&begin_date=\(beginDate)&range=168&station=\(station.id)"
-
-        guard let url = URL(string: urlString) else {
-            throw TideError.networkError("Invalid hi/lo predictions URL")
-        }
+        let url = try Self.predictionsURL(stationID: station.id, beginDate: beginDate, interval: "hilo")
 
         let data = try await fetchData(from: url)
 
@@ -123,11 +126,7 @@ actor NOAAClient {
 
     func fetchHourlyPredictions(stationId: String, startDate: Date) async throws -> [TideDataPoint] {
         let beginDate = Self.beginDateString(from: startDate)
-        let urlString = "\(Self.baseURL)/api/prod/datagetter?product=predictions&datum=MLLW&time_zone=lst_ldt&interval=h&units=metric&format=json&begin_date=\(beginDate)&range=168&station=\(stationId)"
-
-        guard let url = URL(string: urlString) else {
-            throw TideError.networkError("Invalid hourly predictions URL")
-        }
+        let url = try Self.predictionsURL(stationID: stationId, beginDate: beginDate, interval: "h")
 
         let data = try await fetchData(from: url)
 
@@ -166,6 +165,9 @@ actor NOAAClient {
                   (200..<300).contains(httpResponse.statusCode) else {
                 throw TideError.networkError("HTTP error from NOAA API")
             }
+            guard data.count <= Self.maximumResponseBytes else {
+                throw TideError.networkError("NOAA response exceeded the safe size limit")
+            }
             return data
         } catch let error as TideError {
             throw error
@@ -179,6 +181,44 @@ actor NOAAClient {
         f.dateFormat = "yyyyMMdd"
         f.locale = Locale(identifier: "en_US_POSIX")
         return f.string(from: date)
+    }
+
+    private static func predictionsURL(stationID: String, beginDate: String, interval: String) throws -> URL {
+        try makeURL(
+            path: "/api/prod/datagetter",
+            queryItems: [
+                URLQueryItem(name: "product", value: "predictions"),
+                URLQueryItem(name: "datum", value: "MLLW"),
+                URLQueryItem(name: "time_zone", value: "lst_ldt"),
+                URLQueryItem(name: "interval", value: interval),
+                URLQueryItem(name: "units", value: "metric"),
+                URLQueryItem(name: "format", value: "json"),
+                URLQueryItem(name: "begin_date", value: beginDate),
+                URLQueryItem(name: "range", value: "168"),
+                URLQueryItem(name: "station", value: stationID)
+            ]
+        )
+    }
+
+    private static func makeURL(path: String, queryItems: [URLQueryItem]) throws -> URL {
+        var components = URLComponents()
+        components.scheme = "https"
+        components.host = apiHost
+        components.path = path
+        components.queryItems = queryItems
+        guard let url = components.url else {
+            throw TideError.networkError("Could not construct a secure NOAA URL")
+        }
+        return url
+    }
+
+    private static func makeSession() -> URLSession {
+        let configuration = URLSessionConfiguration.ephemeral
+        configuration.timeoutIntervalForRequest = 20
+        configuration.timeoutIntervalForResource = 30
+        configuration.waitsForConnectivity = true
+        configuration.httpAdditionalHeaders = ["Accept": "application/json"]
+        return URLSession(configuration: configuration)
     }
 
     // MARK: - Haversine (static so tests can call without actor isolation)

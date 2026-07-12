@@ -10,9 +10,7 @@
 		02EC8257201CF1E137C51423 /* EphemerisTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2857A2949A71974A3D71C19 /* EphemerisTests.swift */; };
 		07D16E2398C01320072CA103 /* TideEngineApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1548802F048D23EB03F6CB8F /* TideEngineApp.swift */; };
 		0DEFB72D4592CA09DEE3C4C9 /* CoastlineData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F99F16FE00BEFD9BBF02AE /* CoastlineData.swift */; };
-		17C9DA8AC6EBE50A0A51371B /* KeychainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90414C8A200F29B8A0E945C2 /* KeychainHelper.swift */; };
 		1A7A6A50A3EFE01806862D74 /* CoastlineResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4D097B5C396F793793CE31 /* CoastlineResolver.swift */; };
-		1AA1968185591E0891742054 /* StoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00DB526853ECF2DD5705A0E0 /* StoreManager.swift */; };
 		239601520E3CC23B230B6007 /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 10600BD904CF0971AF9C4269 /* Shaders.metal */; };
 		23E3A047A5C5FAE2BEED5F1A /* TideWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DAE458FBC4C785779C46E9 /* TideWidgetBundle.swift */; };
 		33A11BD3B3C7EC81549A4F71 /* TideCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = B302A226E1B473D87BB887A5 /* TideCache.swift */; };
@@ -22,16 +20,16 @@
 		4F68F6AD0C6DC719E06CAEE2 /* TideAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E34A23A35D6D3F57BAEC8C76 /* TideAPITests.swift */; };
 		55684E06F5EACEF86943D75E /* TideCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = B302A226E1B473D87BB887A5 /* TideCache.swift */; };
 		58E4A2DBBFCFF25A2F0D52B1 /* TideWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DED33D63BF689ED2B8EC1B3 /* TideWidget.swift */; };
-		59A489311B66F5C779444D2A /* WorldTidesClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268D91596F2F0C8EDB5A4657 /* WorldTidesClient.swift */; };
 		68F777784608D676B0B5C92A /* TidalForce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E37CB377248480F5A7995B1 /* TidalForce.swift */; };
+		70DE8B655CCC9AE955034AEA /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = C3C6E7A964FD2A86BF7D4B9E /* PrivacyInfo.xcprivacy */; };
 		74EF4B64E13FE43CA7029D84 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECFCCA7B9940FDC7F0A5398 /* ContentView.swift */; };
 		75FB7AEFC65EDCD888AA1A06 /* Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1153DEDB7DABE4C4A2C3E6DB /* Types.swift */; };
 		86B4743BC953B9C41EDC7FE8 /* GlobeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7BBEC37D33D35B05FD6C51 /* GlobeView.swift */; };
-		8CF1902593088812BF4BD19C /* PaywallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93C5F117ADE21BF943F2282 /* PaywallView.swift */; };
 		8EDD598B875AFF5F506A3566 /* Ephemeris.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F49E7127D1B06536335B194 /* Ephemeris.swift */; };
 		9012B8E514E417EE462E9096 /* Phase3Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF00C9877190BEF3579F3FE /* Phase3Tests.swift */; };
 		98E30CE8795DA90CA22F2B05 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB7DD81C75BD76674306A32 /* LocationManager.swift */; };
 		A63CFBB772AB54DA7678E699 /* TideEngineWidget.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = B277BAC647F73304D9E60185 /* TideEngineWidget.appex */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A7CC4DA45B42DF00E4181F41 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7CC7BE3C2A5D0D657853C13F /* Assets.xcassets */; };
 		B6E7F5B9BDBCE9DA9BD4A6DB /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = C3C6E7A964FD2A86BF7D4B9E /* PrivacyInfo.xcprivacy */; };
 		D66CE45FDC9BB333066CC58B /* Ephemeris.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F49E7127D1B06536335B194 /* Ephemeris.swift */; };
 		D6BD3562CED309FF7E808316 /* NOAAClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB0C74BB9C2A7D971D372E9 /* NOAAClient.swift */; };
@@ -39,7 +37,6 @@
 		DC0370556EE295A03719E2C5 /* TideModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848103B5B5169DB70604A28E /* TideModels.swift */; };
 		E046B5DAC87B1A22F29E33DE /* TideDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB7DC46CC929C89D7E6C59F /* TideDataService.swift */; };
 		E0FBE04AA06F1213BD6B09E5 /* HeightFieldRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850B6CAB9EBD7B1DA50C9DB8 /* HeightFieldRenderer.swift */; };
-		E4FD2B43C5DEDE7BC4CE88F5 /* Configuration.storekit in Resources */ = {isa = PBXBuildFile; fileRef = FE844835F9809A23C91007A5 /* Configuration.storekit */; };
 		E6E6D8EC9B32D0F56C05B0C2 /* TideChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC9AF2C0CFB8FA3FB2945E83 /* TideChartView.swift */; };
 		EBC1618ECF9687779B87A65B /* LocalTideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD5143B851DD0FBB3F8B54B /* LocalTideView.swift */; };
 /* End PBXBuildFile section */
@@ -76,13 +73,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		00DB526853ECF2DD5705A0E0 /* StoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreManager.swift; sourceTree = "<group>"; };
 		0C9E1408F846471C66FA4498 /* TideEngineWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TideEngineWidget.entitlements; sourceTree = "<group>"; };
 		0CB0C74BB9C2A7D971D372E9 /* NOAAClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NOAAClient.swift; sourceTree = "<group>"; };
 		10600BD904CF0971AF9C4269 /* Shaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
 		1153DEDB7DABE4C4A2C3E6DB /* Types.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Types.swift; sourceTree = "<group>"; };
 		1548802F048D23EB03F6CB8F /* TideEngineApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TideEngineApp.swift; sourceTree = "<group>"; };
-		268D91596F2F0C8EDB5A4657 /* WorldTidesClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldTidesClient.swift; sourceTree = "<group>"; };
 		2AB7DC46CC929C89D7E6C59F /* TideDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TideDataService.swift; sourceTree = "<group>"; };
 		2EF00C9877190BEF3579F3FE /* Phase3Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Phase3Tests.swift; sourceTree = "<group>"; };
 		3A4D097B5C396F793793CE31 /* CoastlineResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoastlineResolver.swift; sourceTree = "<group>"; };
@@ -90,16 +85,15 @@
 		5F49E7127D1B06536335B194 /* Ephemeris.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ephemeris.swift; sourceTree = "<group>"; };
 		61E53A33F0BC6884BCF86D9D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		64DAE458FBC4C785779C46E9 /* TideWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TideWidgetBundle.swift; sourceTree = "<group>"; };
+		7CC7BE3C2A5D0D657853C13F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		848103B5B5169DB70604A28E /* TideModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TideModels.swift; sourceTree = "<group>"; };
 		850B6CAB9EBD7B1DA50C9DB8 /* HeightFieldRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeightFieldRenderer.swift; sourceTree = "<group>"; };
 		8DED33D63BF689ED2B8EC1B3 /* TideWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TideWidget.swift; sourceTree = "<group>"; };
 		8E37CB377248480F5A7995B1 /* TidalForce.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TidalForce.swift; sourceTree = "<group>"; };
-		90414C8A200F29B8A0E945C2 /* KeychainHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainHelper.swift; sourceTree = "<group>"; };
 		92F99F16FE00BEFD9BBF02AE /* CoastlineData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoastlineData.swift; sourceTree = "<group>"; };
 		9790A911C528BBA79B60D803 /* TideEngine.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = TideEngine.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9BB7DD81C75BD76674306A32 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		A463807A9AC9C6D52AE7CB81 /* GlobeScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobeScene.swift; sourceTree = "<group>"; };
-		A93C5F117ADE21BF943F2282 /* PaywallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaywallView.swift; sourceTree = "<group>"; };
 		AFD5143B851DD0FBB3F8B54B /* LocalTideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalTideView.swift; sourceTree = "<group>"; };
 		B277BAC647F73304D9E60185 /* TideEngineWidget.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = TideEngineWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2857A2949A71974A3D71C19 /* EphemerisTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EphemerisTests.swift; sourceTree = "<group>"; };
@@ -110,7 +104,6 @@
 		CC9AF2C0CFB8FA3FB2945E83 /* TideChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TideChartView.swift; sourceTree = "<group>"; };
 		DD7BBEC37D33D35B05FD6C51 /* GlobeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobeView.swift; sourceTree = "<group>"; };
 		E34A23A35D6D3F57BAEC8C76 /* TideAPITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TideAPITests.swift; sourceTree = "<group>"; };
-		FE844835F9809A23C91007A5 /* Configuration.storekit */ = {isa = PBXFileReference; path = Configuration.storekit; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -168,7 +161,7 @@
 		49F43CB59773DC0C7AD8DECD /* TideEngine */ = {
 			isa = PBXGroup;
 			children = (
-				FE844835F9809A23C91007A5 /* Configuration.storekit */,
+				7CC7BE3C2A5D0D657853C13F /* Assets.xcassets */,
 				BC28FA5B6B1AE75FAB582F3B /* TideEngine.entitlements */,
 				2348E037B0EE2E26608344C2 /* App */,
 				43589EAE9579C21E84E4C2B0 /* Ephemeris */,
@@ -185,9 +178,6 @@
 		653DF65ED67AE6BA10AE711B /* Paywall */ = {
 			isa = PBXGroup;
 			children = (
-				90414C8A200F29B8A0E945C2 /* KeychainHelper.swift */,
-				A93C5F117ADE21BF943F2282 /* PaywallView.swift */,
-				00DB526853ECF2DD5705A0E0 /* StoreManager.swift */,
 			);
 			path = Paywall;
 			sourceTree = "<group>";
@@ -208,7 +198,6 @@
 				B302A226E1B473D87BB887A5 /* TideCache.swift */,
 				2AB7DC46CC929C89D7E6C59F /* TideDataService.swift */,
 				848103B5B5169DB70604A28E /* TideModels.swift */,
-				268D91596F2F0C8EDB5A4657 /* WorldTidesClient.swift */,
 			);
 			path = Tides;
 			sourceTree = "<group>";
@@ -259,6 +248,7 @@
 			buildConfigurationList = 81CCD501C683074C287AD777 /* Build configuration list for PBXNativeTarget "TideEngineWidget" */;
 			buildPhases = (
 				81BAC5C5B1F3E67BAD392191 /* Sources */,
+				68C066A1BEFB2B28793EAAD6 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -320,11 +310,11 @@
 				TargetAttributes = {
 					7B647E53A5EFD925BF1CC9AB = {
 						DevelopmentTeam = 3TGZFKFNA4;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 					};
 					81F66BB9609912DAE92EAD64 = {
 						DevelopmentTeam = 3TGZFKFNA4;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -350,11 +340,19 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		68C066A1BEFB2B28793EAAD6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				70DE8B655CCC9AE955034AEA /* PrivacyInfo.xcprivacy in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		90CEC9762192AF572DA7EBF7 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E4FD2B43C5DEDE7BC4CE88F5 /* Configuration.storekit in Resources */,
+				A7CC4DA45B42DF00E4181F41 /* Assets.xcassets in Resources */,
 				B6E7F5B9BDBCE9DA9BD4A6DB /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -387,13 +385,10 @@
 				DAA8DB9CAF9365F6E7BE30DD /* GlobeScene.swift in Sources */,
 				86B4743BC953B9C41EDC7FE8 /* GlobeView.swift in Sources */,
 				E0FBE04AA06F1213BD6B09E5 /* HeightFieldRenderer.swift in Sources */,
-				17C9DA8AC6EBE50A0A51371B /* KeychainHelper.swift in Sources */,
 				EBC1618ECF9687779B87A65B /* LocalTideView.swift in Sources */,
 				98E30CE8795DA90CA22F2B05 /* LocationManager.swift in Sources */,
 				D6BD3562CED309FF7E808316 /* NOAAClient.swift in Sources */,
-				8CF1902593088812BF4BD19C /* PaywallView.swift in Sources */,
 				239601520E3CC23B230B6007 /* Shaders.metal in Sources */,
-				1AA1968185591E0891742054 /* StoreManager.swift in Sources */,
 				68F777784608D676B0B5C92A /* TidalForce.swift in Sources */,
 				33A11BD3B3C7EC81549A4F71 /* TideCache.swift in Sources */,
 				E6E6D8EC9B32D0F56C05B0C2 /* TideChartView.swift in Sources */,
@@ -401,7 +396,6 @@
 				07D16E2398C01320072CA103 /* TideEngineApp.swift in Sources */,
 				42BC9425633846E11AE73940 /* TideModels.swift in Sources */,
 				3A5E6816CE74D84D02222F52 /* Types.swift in Sources */,
-				59A489311B66F5C779444D2A /* WorldTidesClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -452,8 +446,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = TideEngineWidget/TideEngineWidget.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3TGZFKFNA4;
 				INFOPLIST_FILE = TideEngineWidget/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -461,10 +454,9 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.tideengine.TideEngine.widget;
-				PROVISIONING_PROFILE_SPECIFIER = "TideEngine Widget App Store";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tideengine.app.widget;
 				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -472,8 +464,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = TideEngineWidget/TideEngineWidget.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3TGZFKFNA4;
 				INFOPLIST_FILE = TideEngineWidget/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -481,10 +472,9 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.tideengine.TideEngine.widget;
-				PROVISIONING_PROFILE_SPECIFIER = "TideEngine Widget App Store";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tideengine.app.widget;
 				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -493,11 +483,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = TideEngine/TideEngine.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3TGZFKFNA4;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Tide Engine uses your location to show real-time tides for your nearest coastline.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Tide Engine uses your location when you ask it to find a nearby NOAA tide station.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -505,10 +495,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.tideengine.TideEngine;
-				PROVISIONING_PROFILE_SPECIFIER = "TideEngine App Store";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tideengine.app;
 				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -546,6 +535,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -564,6 +554,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -582,11 +573,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = TideEngine/TideEngine.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3TGZFKFNA4;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Tide Engine uses your location to show real-time tides for your nearest coastline.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Tide Engine uses your location when you ask it to find a nearby NOAA tide station.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -594,10 +585,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.tideengine.TideEngine;
-				PROVISIONING_PROFILE_SPECIFIER = "TideEngine App Store";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tideengine.app;
 				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -652,6 +642,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -664,6 +655,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
