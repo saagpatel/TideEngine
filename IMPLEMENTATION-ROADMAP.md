@@ -1,5 +1,7 @@
 # Tide Engine — Implementation Roadmap
 
+> Historical design document. It contains superseded WorldTides and StoreKit plans and is not the current product or release contract. Use `README.md`, `CLAUDE.md`, `HANDOFF.md`, and the source tree for current truth.
+
 ## Architecture
 
 ### System Overview

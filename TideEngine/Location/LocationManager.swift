@@ -1,9 +1,10 @@
-import CoreLocation
+@preconcurrency import CoreLocation
 
 @MainActor
 final class LocationManager: NSObject, CLLocationManagerDelegate, Observable {
     private let manager = CLLocationManager()
     private var continuation: CheckedContinuation<CLLocation, Error>?
+    private var authorizationContinuation: CheckedContinuation<Void, Error>?
 
     override init() {
         super.init()
@@ -12,11 +13,16 @@ final class LocationManager: NSObject, CLLocationManagerDelegate, Observable {
     }
 
     func requestLocation() async throws -> CLLocation {
+        guard continuation == nil, authorizationContinuation == nil else {
+            throw LocationError.requestInProgress
+        }
+
         let status = manager.authorizationStatus
         if status == .notDetermined {
-            manager.requestWhenInUseAuthorization()
-            // Wait briefly for authorization
-            try await Task.sleep(for: .seconds(0.5))
+            try await withCheckedThrowingContinuation { continuation in
+                authorizationContinuation = continuation
+                manager.requestWhenInUseAuthorization()
+            }
         }
 
         let currentStatus = manager.authorizationStatus
@@ -32,10 +38,35 @@ final class LocationManager: NSObject, CLLocationManagerDelegate, Observable {
 
     // MARK: - CLLocationManagerDelegate
 
+    nonisolated func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        let status = manager.authorizationStatus
+        Task { @MainActor in
+            guard let continuation = authorizationContinuation else { return }
+            switch status {
+            case .authorizedAlways, .authorizedWhenInUse:
+                authorizationContinuation = nil
+                continuation.resume()
+            case .denied, .restricted:
+                authorizationContinuation = nil
+                continuation.resume(throwing: LocationError.permissionDenied)
+            case .notDetermined:
+                break
+            @unknown default:
+                authorizationContinuation = nil
+                continuation.resume(throwing: LocationError.permissionDenied)
+            }
+        }
+    }
+
     nonisolated func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         Task { @MainActor in
-            continuation?.resume(returning: locations.first ?? CLLocation())
-            continuation = nil
+            guard let continuation else { return }
+            self.continuation = nil
+            guard let location = locations.first else {
+                continuation.resume(throwing: LocationError.noLocation)
+                return
+            }
+            continuation.resume(returning: location)
         }
     }
 
@@ -49,5 +80,14 @@ final class LocationManager: NSObject, CLLocationManagerDelegate, Observable {
 
 enum LocationError: Error, LocalizedError {
     case permissionDenied
-    var errorDescription: String? { "Location permission denied" }
+    case noLocation
+    case requestInProgress
+
+    var errorDescription: String? {
+        switch self {
+        case .permissionDenied: "Location access is required to find a nearby NOAA tide station."
+        case .noLocation: "Your location could not be determined. Please try again."
+        case .requestInProgress: "A location request is already in progress."
+        }
+    }
 }

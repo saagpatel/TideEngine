@@ -1,16 +1,14 @@
 import SwiftUI
 import CoreLocation
-import StoreKit
 
 struct ContentView: View {
     @State private var globeScene: GlobeScene?
     @State private var error: String?
     @State private var tappedCoordinate: CLLocationCoordinate2D?
     @State private var showLocalTide = false
-    @State private var showPaywall = false
     @State private var locationManager = LocationManager()
-    @State private var hasAttemptedAutoNav = false
-    @StateObject private var storeManager = StoreManager.shared
+    @State private var isLocating = false
+    @State private var locationError: String?
 
     var body: some View {
         NavigationStack {
@@ -22,21 +20,7 @@ struct ContentView: View {
                     GlobeView(globeScene: globeScene, onTapCoastline: { coordinate in
                         globeScene.animateCameraZoom(toward: coordinate) {
                             tappedCoordinate = coordinate
-                            // Pre-check: try loading data to detect if paywall needed
-                            Task {
-                                do {
-                                    _ = try await TideDataService.shared.loadTideData(for: coordinate)
-                                    await MainActor.run { showLocalTide = true }
-                                } catch TideError.internationalLocked {
-                                    await MainActor.run {
-                                        globeScene.resetCamera()
-                                        showPaywall = true
-                                    }
-                                } catch {
-                                    // Other errors — let LocalTideView handle them
-                                    await MainActor.run { showLocalTide = true }
-                                }
-                            }
+                            showLocalTide = true
                         }
                     })
                     .ignoresSafeArea()
@@ -48,6 +32,51 @@ struct ContentView: View {
                     ProgressView()
                         .tint(.white)
                 }
+
+                VStack {
+                    HStack {
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text("TIDE ENGINE")
+                                .font(.caption.weight(.bold))
+                                .tracking(2.4)
+                            Text("Gravity, made visible")
+                                .font(.caption2)
+                                .foregroundStyle(.secondary)
+                        }
+                        .foregroundStyle(.white)
+                        .padding(.horizontal, 14)
+                        .padding(.vertical, 10)
+                        .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 16))
+
+                        Spacer()
+                        Button {
+                            locateUser()
+                        } label: {
+                            Group {
+                                if isLocating {
+                                    ProgressView()
+                                } else {
+                                    Image(systemName: "location.fill")
+                                }
+                            }
+                            .frame(width: 48, height: 48)
+                            .background(.ultraThinMaterial, in: Circle())
+                        }
+                        .disabled(isLocating || globeScene == nil)
+                        .accessibilityLabel("Show tides near me")
+                    }
+                    Spacer()
+
+                    Text("Drag to explore • Tap a supported U.S. coast for NOAA tides")
+                        .font(.caption)
+                        .foregroundStyle(.white.opacity(0.9))
+                        .multilineTextAlignment(.center)
+                        .padding(.horizontal, 16)
+                        .padding(.vertical, 10)
+                        .background(.ultraThinMaterial, in: Capsule())
+                        .accessibilityLabel("Drag to explore. Tap a supported United States coast for NOAA tides.")
+                }
+                .padding()
             }
             .navigationDestination(isPresented: $showLocalTide) {
                 if let coord = tappedCoordinate {
@@ -57,35 +86,18 @@ struct ContentView: View {
                         }
                 }
             }
-            .sheet(isPresented: $showPaywall) {
-                PaywallView(storeManager: storeManager, onPurchased: {
-                    // After purchase, navigate to tide view
-                    if tappedCoordinate != nil {
-                        showLocalTide = true
-                    }
-                })
-            }
             .toolbar(.hidden, for: .navigationBar)
+            .alert("Location Unavailable", isPresented: Binding(
+                get: { locationError != nil },
+                set: { if !$0 { locationError = nil } }
+            )) {
+                Button("OK", role: .cancel) { locationError = nil }
+            } message: {
+                Text(locationError ?? "Tide Engine could not determine your location.")
+            }
         }
         .task {
             await setupGlobe()
-
-            // First-launch auto-navigation to user's nearest coastline
-            if !UserDefaults.standard.bool(forKey: "hasLaunchedBefore"), !hasAttemptedAutoNav {
-                hasAttemptedAutoNav = true
-                UserDefaults.standard.set(true, forKey: "hasLaunchedBefore")
-                do {
-                    try await Task.sleep(for: .seconds(1.5))
-                    let location = try await locationManager.requestLocation()
-                    let coord = location.coordinate
-                    globeScene?.animateCameraZoom(toward: coord) {
-                        tappedCoordinate = coord
-                        showLocalTide = true
-                    }
-                } catch {
-                    // Permission denied or timeout — silently skip
-                }
-            }
         }
     }
 
@@ -109,6 +121,24 @@ struct ContentView: View {
             await MainActor.run {
                 self.error = error.localizedDescription
             }
+        }
+    }
+
+    private func locateUser() {
+        isLocating = true
+        locationError = nil
+        Task {
+            do {
+                let location = try await locationManager.requestLocation()
+                let coordinate = location.coordinate
+                globeScene?.animateCameraZoom(toward: coordinate) {
+                    tappedCoordinate = coordinate
+                    showLocalTide = true
+                }
+            } catch {
+                locationError = error.localizedDescription
+            }
+            isLocating = false
         }
     }
 }

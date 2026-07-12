@@ -1,5 +1,7 @@
 # Tide Engine — Portfolio Disposition
 
+> Historical portfolio snapshot. Its WorldTides, StoreKit, signing, branch, and readiness claims were superseded by the July 2026 hardening pass. Use the repository's current `HANDOFF.md` for release posture.
+
 **Status:** Release Frozen (iOS App Store) — Swift + SwiftUI + Metal
 3D-globe iOS tidal simulator pairing a real-time gravitational
 physics engine with **live NOAA station data** on `origin/main`,

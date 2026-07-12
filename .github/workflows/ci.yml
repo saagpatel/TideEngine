@@ -4,14 +4,26 @@ on:
     branches: [main]
   pull_request:
 jobs:
-  build:
+  build-and-test:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v7
-      - name: Build
+      - name: Install XcodeGen
+        run: brew install xcodegen
+      - name: Generate project
+        run: xcodegen generate
+      - name: Test
+        run: |
+          xcodebuild test \
+            -scheme TideEngine \
+            -project TideEngine.xcodeproj \
+            -destination 'platform=iOS Simulator,name=iPhone 17' \
+            CODE_SIGNING_ALLOWED=NO
+      - name: Release build
         run: |
           xcodebuild build \
             -scheme TideEngine \
             -project TideEngine.xcodeproj \
+            -configuration Release \
             -destination 'generic/platform=iOS' \
             CODE_SIGNING_ALLOWED=NO

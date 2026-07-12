@@ -9,7 +9,6 @@ enum TideType: String, Codable, Sendable {
 
 enum DataSource: String, Codable, Sendable {
     case noaa
-    case worldTides
 }
 
 struct TideStation: Codable, Sendable, Hashable {
@@ -89,20 +88,6 @@ struct NOAAErrorBody: Codable, Sendable {
     let message: String
 }
 
-// MARK: - WorldTides API Response
-
-struct WorldTidesResponse: Codable, Sendable {
-    let status: Int
-    let extremes: [WorldTidesExtreme]?
-    let error: String?
-}
-
-struct WorldTidesExtreme: Codable, Sendable {
-    let dt: Int        // Unix timestamp
-    let height: Double
-    let type: String   // "High" or "Low"
-}
-
 // MARK: - Errors
 
 enum TideError: Error, LocalizedError, Sendable {
@@ -110,7 +95,7 @@ enum TideError: Error, LocalizedError, Sendable {
     case noData(String)
     case networkError(String)
     case parseError(String)
-    case internationalLocked  // user needs IAP to access international data
+    case unsupportedRegion
 
     var errorDescription: String? {
         switch self {
@@ -118,7 +103,7 @@ enum TideError: Error, LocalizedError, Sendable {
         case .noData(let msg): return "No tide data available: \(msg)"
         case .networkError(let msg): return "Network error: \(msg)"
         case .parseError(let msg): return "Data parsing error: \(msg)"
-        case .internationalLocked: return "International tide data requires unlock"
+        case .unsupportedRegion: return "NOAA tide predictions are currently available near supported U.S. stations only"
         }
     }
 }

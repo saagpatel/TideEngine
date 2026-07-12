@@ -10,10 +10,10 @@ Tide Engine is an iOS tidal simulation app that pairs a real-time gravitational 
 
 - **Interactive 3D globe** — SceneKit-rendered Earth with a live tidal height field updating every 0.5 seconds as the Moon and Sun move
 - **Custom ephemeris engine** — Moon position via Meeus ELP 2000/82 (truncated), Sun position via VSOP87; no third-party astronomy libraries
-- **Local tide detail** — gravitational pull percentage, surface displacement, Moon angle, a 7-day height chart, and upcoming high/low times
-- **NOAA + WorldTides data** — fetches official predictions from NOAA CO-OPS for US stations; WorldTides as international fallback, cached 24 hours on-device
+- **Local tide detail** — gravitational pull percentage, modeled surface displacement, Moon angle, a 7-day NOAA height chart, and upcoming high/low times
+- **NOAA tide data** — fetches official predictions for locations within 200 km of a supported NOAA station and caches them for offline reuse
 - **Home screen widget** — small and medium WidgetKit widgets showing current gravitational pull gauge and next tide time via shared App Group cache
-- **In-app purchase** — international WorldTides data as an optional StoreKit 2 unlock
+- **Privacy-aware location** — location is requested only when you tap the location button and stays on-device while the app selects a NOAA station
 
 ## Quick Start
 
@@ -39,15 +39,14 @@ Build and run the `TideEngine` scheme on a device or simulator.
 |-------|------------|
 | Language | Swift 5.10, strict concurrency |
 | UI | SwiftUI + SceneKit (globe) + Metal (height field shader) |
-| Data | NOAA CO-OPS REST API, WorldTides API |
+| Data | NOAA CO-OPS REST API |
 | Astronomy | Custom Meeus/VSOP87 ephemeris |
 | Widget | WidgetKit + App Groups |
-| Payments | StoreKit 2 |
 | Project config | XcodeGen |
 
 ## Architecture
 
-The tidal heightfield recomputes at ~2 Hz (every 0.5 s) via `SCNSceneRendererDelegate`'s `renderer(_:updateAtTime:)` callback, computing lunar and solar unit vectors and the tidal potential field across a 64×32 latitude/longitude grid. A Metal compute shader upsamples this grid to a 512×256 color texture that drives the sphere's emission material in real time. NOAA data is fetched lazily on coastline tap, decoded with a custom `Codable` pipeline, and cached in App Group UserDefaults for sharing with the WidgetKit extension.
+The tidal heightfield recomputes at ~2 Hz (every 0.5 s) via `SCNSceneRendererDelegate`'s `renderer(_:updateAtTime:)` callback, computing lunar and solar unit vectors and the tidal potential field across a 64×32 latitude/longitude grid. A Metal compute shader upsamples this grid to a 512×256 color texture that drives the sphere's emission material in real time. NOAA data is fetched on demand, decoded with `Codable`, and cached in App Group UserDefaults for sharing with the WidgetKit extension. The globe is an educational visualization; use official local guidance for navigation or safety decisions.
 
 ## License
 

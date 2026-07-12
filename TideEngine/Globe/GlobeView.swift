@@ -1,5 +1,5 @@
 import SwiftUI
-import SceneKit
+@preconcurrency import SceneKit
 import CoreLocation
 
 struct GlobeView: UIViewRepresentable {
@@ -60,7 +60,7 @@ struct GlobeView: UIViewRepresentable {
             globeScene.update(positions: positions, field: field)
         }
 
-        @objc func handleTap(_ gesture: UITapGestureRecognizer) {
+        @MainActor @objc func handleTap(_ gesture: UITapGestureRecognizer) {
             guard let scnView else { return }
             let location = gesture.location(in: scnView)
             let hitResults = scnView.hitTest(location, options: [
