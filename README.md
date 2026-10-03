@@ -33,6 +33,46 @@ open TideEngine.xcodeproj
 ### Usage
 Build and run the `TideEngine` scheme on a device or simulator.
 
+## Verification
+
+Run from the repository root on macOS with full Xcode selected, XcodeGen, and
+an installed iOS Simulator runtime. `xcodebuild -version` and
+`xcrun simctl list devices available` identify the local prerequisites.
+The Makefile generates the Xcode project before building or testing:
+
+```bash
+make build
+make test
+make release
+```
+
+These targets disable signing. `make release` is an unsigned build, not a
+deployment or App Store submission. The Makefile defaults to `iPhone 17 Pro`;
+[CI](.github/workflows/ci.yml) uses `iPhone 17`. If the default is unavailable,
+choose an installed compatible simulator, for example:
+
+```bash
+make test DESTINATION='platform=iOS Simulator,name=iPhone 17'
+```
+
+For focused XCTest changes, run `make project`, then use the same project/scheme
+with XCTest's selector (substitute the changed test class):
+
+```bash
+xcodebuild test -project TideEngine.xcodeproj -scheme TideEngine \
+  -destination 'platform=iOS Simulator,name=iPhone 17' \
+  -only-testing:TideEngineTests/EphemerisTests CODE_SIGNING_ALLOWED=NO
+```
+
+There is no separate lint, format, or typecheck target; Swift compilation and
+XCTest are the maintained gates. Missing Xcode/runtime is an unavailable lane,
+not a successful build. Use a disposable simulator for changed globe, tide
+detail, or widget behavior; inspect the affected screen and accessibility.
+NOAA requests, location permission, and App Group cache writes are runtime
+effects, so use synthetic/mocked data for bounded verification and do not enable
+personal location or replace existing simulator data as a smoke. This native
+iOS UI has no browser verification lane.
+
 ## Tech Stack
 
 | Layer | Technology |
