@@ -71,7 +71,9 @@ detail, or widget behavior; inspect the affected screen and accessibility.
 NOAA requests, location permission, and App Group cache writes are runtime
 effects, so use synthetic/mocked data for bounded verification and do not enable
 personal location or replace existing simulator data as a smoke. This native
-iOS UI has no browser verification lane.
+iOS UI has no browser verification lane or packaged offline UI fixture mode.
+If safe synthetic data cannot be supplied, record that runtime UI lane as
+unavailable and use the fixture-backed XCTest lane instead.
 
 ## Tech Stack
 
