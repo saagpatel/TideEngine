@@ -20,6 +20,8 @@ Open a [GitHub Issue](../../issues/new) with:
 ## Development Setup
 
 See the README for installation and setup instructions.
+Use the [verification guide](README.md#verification) for focused XCTest,
+unsigned build/test commands, and simulator/data prerequisites.
 
 ## Code Style
 
