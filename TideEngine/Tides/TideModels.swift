@@ -26,6 +26,10 @@ struct TidePrediction: Codable, Sendable, Identifiable {
     let station: TideStation
 
     var id: Date { timestamp }
+
+    static func upcoming(in predictions: [TidePrediction], after date: Date) -> [TidePrediction] {
+        predictions.filter { $0.timestamp > date }
+    }
 }
 
 struct TideDataPoint: Codable, Sendable, Identifiable {
@@ -111,11 +115,12 @@ enum TideError: Error, LocalizedError, Sendable {
 // MARK: - Date Formatting
 
 enum TideDateFormatter {
-    /// NOAA date format: "2026-03-22 06:14"
+    /// NOAA GMT date format: "2026-03-22 06:14". Display remains device-local.
     static let noaa: DateFormatter = {
         let f = DateFormatter()
-        f.dateFormat = "yyyy-MM-dd HH:mm"
         f.locale = Locale(identifier: "en_US_POSIX")
+        f.timeZone = TimeZone(identifier: "UTC")
+        f.dateFormat = "yyyy-MM-dd HH:mm"
         return f
     }()
 }

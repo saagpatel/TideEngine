@@ -12,8 +12,8 @@ The hardened v1 product is an iPhone app with an interactive gravitational visua
 - Main and widget privacy manifests bundled
 - Opaque 1024×1024 app icon
 - Simulator launch and visual inspection
-- Bundle IDs: `com.tideengine.app` and `com.tideengine.app.widget`
-- App Group: `group.com.tideengine`
+- Bundle IDs for this upload: `com.tideengine.TideEngine` and `com.tideengine.TideEngine.widget`
+- App Group for this upload: `group.com.tideengine.TideEngine` (operator must confirm provisioning)
 
 ## Release-owner work still required
 

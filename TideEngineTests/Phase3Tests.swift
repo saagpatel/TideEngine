@@ -1,7 +1,60 @@
 import XCTest
+import SceneKit
 @testable import TideEngine
 
 final class Phase3Tests: XCTestCase {
+    func testGlobeCoordinates_GreenwichAndEastEquator() throws {
+        let greenwich = try XCTUnwrap(latLon(fromLocal: SCNVector3(1, 0, 0)))
+        XCTAssertEqual(greenwich.latitude, 0, accuracy: 0.0001)
+        XCTAssertEqual(greenwich.longitude, 0, accuracy: 0.0001)
+
+        let east = try XCTUnwrap(latLon(fromLocal: SCNVector3(0, 0, -1)))
+        XCTAssertEqual(east.latitude, 0, accuracy: 0.0001)
+        XCTAssertEqual(east.longitude, 90, accuracy: 0.0001)
+    }
+
+    func testGlobeCoordinates_SouthernAndWesternPoint() throws {
+        // Latitude -30°, longitude -45°, scaled to the coastline radius.
+        let point = SCNVector3(0.6123724 * 1.002, -0.5 * 1.002, 0.6123724 * 1.002)
+        let coordinate = try XCTUnwrap(latLon(fromLocal: point))
+        XCTAssertEqual(coordinate.latitude, -30, accuracy: 0.0001)
+        XCTAssertEqual(coordinate.longitude, -45, accuracy: 0.0001)
+        XCTAssertNil(latLon(fromLocal: SCNVector3Zero))
+    }
+
+    func testGlobeCoordinates_RotatedSphereLocalPointKeepsSameStation() throws {
+        let scene = SCNScene()
+        let sphere = SCNNode(geometry: SCNSphere(radius: 1))
+        scene.rootNode.addChildNode(sphere)
+        let latitude = 37.806305 * Double.pi / 180
+        let longitude = -122.465889 * Double.pi / 180
+        let stationPoint = SCNVector3(
+            Float(cos(latitude) * cos(longitude)), Float(sin(latitude)),
+            Float(-cos(latitude) * sin(longitude))
+        )
+
+        for rotation: Float in [0, .pi / 2, .pi, -.pi / 3] {
+            sphere.eulerAngles.y = rotation
+            let worldPoint = sphere.convertPosition(stationPoint, to: nil)
+            // A tap reports the world point; GlobeView reads SCNHitTestResult.localCoordinates,
+            // which is this world point expressed in the rotating sphere's space. Offscreen
+            // SceneKit segment hit tests return no hits without a renderer, so convert directly.
+            let local = sphere.convertPosition(worldPoint, from: nil)
+            let coordinate = try XCTUnwrap(latLon(fromLocal: local))
+            let naive = try XCTUnwrap(latLon(fromLocal: worldPoint))
+            if rotation != 0 {
+                // The old world-space conversion picks a different longitude once the globe turns.
+                XCTAssertGreaterThan(abs(naive.longitude - (-122.465889)), 1)
+            }
+            XCTAssertEqual(coordinate.latitude, 37.806305, accuracy: 0.05)
+            XCTAssertEqual(coordinate.longitude, -122.465889, accuracy: 0.05)
+            XCTAssertLessThan(NOAAClient.haversineDistance(
+                lat1: coordinate.latitude, lon1: coordinate.longitude,
+                lat2: 37.806305, lon2: -122.465889
+            ), 10)
+        }
+    }
+
     func testHaversineDistance_SFisCloseToNOAAStation() {
         let distance = NOAAClient.haversineDistance(
             lat1: 37.7749, lon1: -122.4194,
@@ -47,7 +100,7 @@ final class Phase3Tests: XCTestCase {
             dataSource: .noaa
         )
         TideCache.saveLastStation(station)
-        defer { UserDefaults(suiteName: "group.com.tideengine")?.removeObject(forKey: "lastStation") }
+        defer { UserDefaults(suiteName: "group.com.tideengine.TideEngine")?.removeObject(forKey: "lastStation") }
 
         let loaded = TideCache.loadLastStation()
         XCTAssertEqual(loaded?.id, station.id)

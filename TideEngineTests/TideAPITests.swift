@@ -172,6 +172,47 @@ final class TideAPITests: XCTestCase {
 
     // MARK: - Date Formatting
 
+    func testNOAATimestampsAndRequestDatesUseUTCRegardlessOfDeviceZone() throws {
+        let originalZone = NSTimeZone.default
+        defer { NSTimeZone.default = originalZone }
+        // 2026-03-22 00:10 UTC is still March 21 in California.
+        let expected = Date(timeIntervalSince1970: 1_774_138_200)
+        XCTAssertEqual(TideDateFormatter.noaa.timeZone.secondsFromGMT(for: expected), 0)
+
+        for identifier in ["America/Los_Angeles", "Asia/Tokyo", "UTC"] {
+            NSTimeZone.default = try XCTUnwrap(TimeZone(identifier: identifier))
+            let parsed = try XCTUnwrap(TideDateFormatter.noaa.date(from: "2026-03-22 00:10"))
+            XCTAssertEqual(parsed, expected, identifier)
+            XCTAssertEqual(NOAAClient.beginDateString(from: expected), "20260322", identifier)
+        }
+    }
+
+    func testBothPredictionRequestsSpecifyGMT() throws {
+        for interval in ["hilo", "h"] {
+            let url = try NOAAClient.predictionsURL(
+                stationID: "9414290", beginDate: "20260322", interval: interval
+            )
+            let items = try XCTUnwrap(URLComponents(url: url, resolvingAgainstBaseURL: false)?.queryItems)
+            XCTAssertEqual(items.first(where: { $0.name == "time_zone" })?.value, "gmt")
+            XCTAssertEqual(items.first(where: { $0.name == "interval" })?.value, interval)
+        }
+    }
+
+    func testUpcomingFilteringAcrossUTCMidnight() throws {
+        let station = TideStation(id: "test", name: "Test", latitude: 0, longitude: 0, dataSource: .noaa)
+        let timestamps = try ["2026-03-21 23:55", "2026-03-22 00:00", "2026-03-22 00:10"].map {
+            try XCTUnwrap(TideDateFormatter.noaa.date(from: $0))
+        }
+        let predictions = timestamps.map {
+            TidePrediction(timestamp: $0, heightMeters: 1, type: .high, station: station)
+        }
+        let beforeMidnight = try XCTUnwrap(TideDateFormatter.noaa.date(from: "2026-03-21 23:59"))
+        XCTAssertEqual(TidePrediction.upcoming(in: predictions, after: beforeMidnight).map(\.timestamp),
+                       Array(timestamps.suffix(2)))
+        XCTAssertEqual(TidePrediction.upcoming(in: predictions, after: timestamps[1]).map(\.timestamp),
+                       [timestamps[2]])
+    }
+
     func testTideDateFormatter_ParsesNOAAFormat() {
         let parsed = TideDateFormatter.noaa.date(from: "2026-03-22 06:14")
         XCTAssertNotNil(parsed, "Should parse NOAA date string '2026-03-22 06:14'")
@@ -193,6 +234,29 @@ final class TideAPITests: XCTestCase {
     }
 
     // MARK: - Cache Round-Trip
+
+    func testLegacyStationLocalCacheIsIgnoredByBothLoaders() throws {
+        let stationId = "TEST-LEGACY-\(UUID().uuidString)"
+        let suite = try XCTUnwrap(UserDefaults(suiteName: "group.com.tideengine.TideEngine"))
+        let legacyKey = "tideCache-\(stationId)"
+        let currentKey = "tideCache-v2-gmt-\(stationId)"
+        defer {
+            suite.removeObject(forKey: legacyKey)
+            suite.removeObject(forKey: currentKey)
+        }
+        let now = Date.now
+        let entry = CachedTideData(
+            stationId: stationId, stationName: "Legacy", predictions: [], hourlyCurve: [],
+            fetchedAt: now, expiresAt: now.addingTimeInterval(86400)
+        )
+        suite.set(try JSONEncoder().encode(entry), forKey: legacyKey)
+        XCTAssertNil(TideCache.loadPredictions(stationId: stationId))
+        XCTAssertNil(TideCache.loadStalePredictions(stationId: stationId))
+
+        TideCache.savePredictions(entry)
+        XCTAssertEqual(TideCache.loadPredictions(stationId: stationId)?.stationId, stationId)
+        XCTAssertEqual(TideCache.loadStalePredictions(stationId: stationId)?.stationId, stationId)
+    }
 
     func testCacheRoundTrip_SaveAndLoad() {
         let testStationId = "TEST-\(UUID().uuidString)"

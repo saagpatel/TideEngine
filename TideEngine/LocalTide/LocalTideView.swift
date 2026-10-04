@@ -452,8 +452,7 @@ struct LocalTideView: View {
 
     private var upcomingTides: [TidePrediction] {
         guard let predictions = tideResult?.predictions else { return [] }
-        return predictions
-            .filter { $0.timestamp > Date.now }
+        return TidePrediction.upcoming(in: predictions, after: .now)
             .prefix(4)
             .map { $0 }
     }
@@ -515,8 +514,10 @@ struct LocalTideView: View {
     }
 }
 
+#if DEBUG
 #Preview {
     NavigationStack {
         LocalTideView(coordinate: CLLocationCoordinate2D(latitude: 37.78, longitude: -122.42))
     }
 }
+#endif
