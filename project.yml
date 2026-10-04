@@ -58,6 +58,7 @@ targets:
       - TideEngineWidget
       - path: TideEngine/Tides/TideModels.swift
       - path: TideEngine/Tides/TideCache.swift
+      - path: TideEngine/Tides/WidgetPredictionFreshness.swift
       - path: TideEngine/Resources/PrivacyInfo.xcprivacy
         buildPhase: resources
       - path: TideEngine/Ephemeris/Types.swift

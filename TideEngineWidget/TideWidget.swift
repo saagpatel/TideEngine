@@ -8,13 +8,15 @@ struct TideWidgetEntry: TimelineEntry {
     let gravitationalPullPercent: Int   // 0–100
     let nextTide: TidePrediction?       // from cache
     let stationName: String
+    let fetchedAt: Date?
 }
 
 // MARK: - Provider
 
 struct TideProvider: TimelineProvider {
     func placeholder(in context: Context) -> TideWidgetEntry {
-        TideWidgetEntry(date: .now, gravitationalPullPercent: 65, nextTide: nil, stationName: "Loading...")
+        TideWidgetEntry(date: .now, gravitationalPullPercent: 65, nextTide: nil,
+                        stationName: "Loading...", fetchedAt: nil)
     }
 
     func getSnapshot(in context: Context, completion: @escaping (TideWidgetEntry) -> Void) {
@@ -42,20 +44,20 @@ struct TideProvider: TimelineProvider {
         let station = TideCache.loadLastStation()
         let stationName = station?.name ?? "No Station"
 
-        // Load cached predictions
-        let predictions: [TidePrediction]
+        // Evaluate freshness at each timeline entry, including future entries.
+        let cached: CachedTideData?
         if let stationId = station?.id,
-           let cached = TideCache.loadPredictions(stationId: stationId) {
-            predictions = cached.predictions
-        } else if let stationId = station?.id,
-                  let stale = TideCache.loadStalePredictions(stationId: stationId) {
-            predictions = stale.predictions  // use stale if fresh expired
+           let candidate = TideCache.loadStalePredictions(stationId: stationId),
+           WidgetPredictionFreshness.isUsable(candidate, at: date) {
+            cached = candidate
         } else {
-            predictions = []
+            cached = nil
         }
 
         // Next tide after this entry's date
-        let nextTide = predictions.first(where: { $0.timestamp > date })
+        let nextTide = cached.flatMap {
+            TidePrediction.upcoming(in: $0.predictions, after: date).first
+        }
 
         // Gravitational pull from ephemeris (offline, no network)
         let pullPercent = computeGravitationalPull(at: date, station: station)
@@ -64,7 +66,8 @@ struct TideProvider: TimelineProvider {
             date: date,
             gravitationalPullPercent: pullPercent,
             nextTide: nextTide,
-            stationName: stationName
+            stationName: stationName,
+            fetchedAt: cached?.fetchedAt
         )
     }
 
@@ -114,7 +117,7 @@ struct TideWidgetView: View {
 
     private var smallView: some View {
         Group {
-            if entry.stationName == "No Station" {
+            if entry.stationName == "No Station" || entry.fetchedAt == nil {
                 VStack(spacing: 8) {
                     Image(systemName: "globe.americas.fill")
                         .font(.title2)
@@ -143,6 +146,8 @@ struct TideWidgetView: View {
                         .font(.caption2)
                         .foregroundStyle(.gray)
                         .lineLimit(1)
+
+                    freshnessLabel
                 }
             }
         }
@@ -153,7 +158,7 @@ struct TideWidgetView: View {
 
     private var mediumView: some View {
         Group {
-            if entry.stationName == "No Station" {
+            if entry.stationName == "No Station" || entry.fetchedAt == nil {
                 VStack(spacing: 8) {
                     Image(systemName: "globe.americas.fill")
                         .font(.title2)
@@ -216,6 +221,8 @@ struct TideWidgetView: View {
                                 .font(.caption2)
                                 .foregroundStyle(.gray.opacity(0.7))
                         }
+
+                        freshnessLabel
                     }
 
                     Spacer()
@@ -228,6 +235,17 @@ struct TideWidgetView: View {
     private var truncatedStationName: String {
         let name = entry.stationName
         return name.count > 20 ? String(name.prefix(18)) + "\u{2026}" : name
+    }
+
+    @ViewBuilder
+    private var freshnessLabel: some View {
+        if let fetchedAt = entry.fetchedAt {
+            Text("Updated \(fetchedAt, style: .relative) ago")
+                .font(.caption2)
+                .foregroundStyle(.gray)
+                .lineLimit(1)
+                .minimumScaleFactor(0.7)
+        }
     }
 }
 
