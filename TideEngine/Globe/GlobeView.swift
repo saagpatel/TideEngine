@@ -60,6 +60,9 @@ struct GlobeView: UIViewRepresentable {
         }
 
         func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
+#if DEBUG
+            if AppStoreScreenshot.number != nil { return }
+#endif
             // Throttle tidal field recomputation to every 0.5s
             // (Moon moves only 0.5°/hour — 60fps recomputation is wasteful)
             guard time - lastUpdateTime > 0.5 else { return }

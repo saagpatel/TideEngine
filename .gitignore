@@ -20,6 +20,7 @@ build/
 
 # Swift Package Manager
 .build/
+.build/shots/
 Packages/
 Package.resolved
 
@@ -31,3 +32,6 @@ CLAUDE.md.bak
 
 # Distribution lane receipts
 dist-receipts/
+
+# Generated App Store captures (uploaded by the dispatcher)
+screenshots/appstore/

@@ -101,6 +101,15 @@ final class GlobeScene: @unchecked Sendable {
         sphereNode.runAction(SCNAction.repeatForever(rotateAction))
     }
 
+#if DEBUG
+    func freezeForAppStoreScreenshot(at date: Date) {
+        sphereNode.removeAllActions()
+        let gmst = Ephemeris.gmstDegrees(at: date)
+        sphereNode.eulerAngles.y = Float(gmst * .pi / 180)
+        emissionProperty.contentsTransform = SCNMatrix4MakeTranslation(Float(gmst / 360), 0, 0)
+    }
+#endif
+
     // MARK: - Coastline
 
     private func buildCoastlineNode() -> SCNNode {
