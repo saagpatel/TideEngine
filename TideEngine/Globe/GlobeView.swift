@@ -2,6 +2,19 @@ import SwiftUI
 @preconcurrency import SceneKit
 import CoreLocation
 
+/// Coastline vertices use +X for Greenwich and -Z for east longitude.
+func latLon(fromLocal point: SCNVector3) -> CLLocationCoordinate2D? {
+    let x = Double(point.x)
+    let y = Double(point.y)
+    let z = Double(point.z)
+    let radius = sqrt(x * x + y * y + z * z)
+    guard radius > 0, radius.isFinite else { return nil }
+
+    let latitude = asin(max(-1, min(1, y / radius))) * 180 / .pi
+    let longitude = atan2(-z, x) * 180 / .pi
+    return CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+}
+
 struct GlobeView: UIViewRepresentable {
     let globeScene: GlobeScene
     var onTapCoastline: ((CLLocationCoordinate2D) -> Void)?
@@ -70,20 +83,8 @@ struct GlobeView: UIViewRepresentable {
             // Find hit on the sphere geometry (ignore coastline lines)
             guard let hit = hitResults.first(where: { $0.node.geometry is SCNSphere }) else { return }
 
-            // Convert world coordinates to geographic lat/lon
-            let p = hit.worldCoordinates
-            let r = sqrt(p.x * p.x + p.y * p.y + p.z * p.z)
-            guard r > 0 else { return }
-            let ny = p.y / r
-            let nx = p.x / r
-            let nz = p.z / r
-
-            let lat = asin(Double(ny)) * 180.0 / .pi
-            var lon = atan2(Double(-nz), Double(nx)) * 180.0 / .pi
-            if lon > 180.0 { lon -= 360.0 }
-            if lon < -180.0 { lon += 360.0 }
-
-            let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: lon)
+            // Local hit coordinates undo the sphere's GMST rotation.
+            guard let coordinate = latLon(fromLocal: hit.localCoordinates) else { return }
             onTapCoastline?(coordinate)
         }
     }
