@@ -452,8 +452,7 @@ struct LocalTideView: View {
 
     private var upcomingTides: [TidePrediction] {
         guard let predictions = tideResult?.predictions else { return [] }
-        return predictions
-            .filter { $0.timestamp > Date.now }
+        return TidePrediction.upcoming(in: predictions, after: .now)
             .prefix(4)
             .map { $0 }
     }

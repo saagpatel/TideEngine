@@ -178,18 +178,19 @@ actor NOAAClient {
 
     static func beginDateString(from date: Date) -> String {
         let f = DateFormatter()
-        f.dateFormat = "yyyyMMdd"
         f.locale = Locale(identifier: "en_US_POSIX")
+        f.timeZone = TimeZone(identifier: "UTC")
+        f.dateFormat = "yyyyMMdd"
         return f.string(from: date)
     }
 
-    private static func predictionsURL(stationID: String, beginDate: String, interval: String) throws -> URL {
+    static func predictionsURL(stationID: String, beginDate: String, interval: String) throws -> URL {
         try makeURL(
             path: "/api/prod/datagetter",
             queryItems: [
                 URLQueryItem(name: "product", value: "predictions"),
                 URLQueryItem(name: "datum", value: "MLLW"),
-                URLQueryItem(name: "time_zone", value: "lst_ldt"),
+                URLQueryItem(name: "time_zone", value: "gmt"),
                 URLQueryItem(name: "interval", value: interval),
                 URLQueryItem(name: "units", value: "metric"),
                 URLQueryItem(name: "format", value: "json"),

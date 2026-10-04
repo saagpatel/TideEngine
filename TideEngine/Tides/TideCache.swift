@@ -6,8 +6,13 @@ struct TideCache {
 
     // MARK: - Predictions (App Group — widget-accessible)
 
+    // v1 dates were parsed from station-local strings in the device zone. Never reuse them.
+    private static func predictionKey(stationId: String) -> String {
+        "tideCache-v2-gmt-\(stationId)"
+    }
+
     static func loadPredictions(stationId: String) -> CachedTideData? {
-        guard let data = suite.data(forKey: "tideCache-\(stationId)") else { return nil }
+        guard let data = suite.data(forKey: predictionKey(stationId: stationId)) else { return nil }
         guard let cached = try? JSONDecoder().decode(CachedTideData.self, from: data) else { return nil }
         guard cached.expiresAt > Date.now else { return nil }
         return cached
@@ -15,13 +20,13 @@ struct TideCache {
 
     static func loadStalePredictions(stationId: String) -> CachedTideData? {
         // Returns even expired data for fallback
-        guard let data = suite.data(forKey: "tideCache-\(stationId)") else { return nil }
+        guard let data = suite.data(forKey: predictionKey(stationId: stationId)) else { return nil }
         return try? JSONDecoder().decode(CachedTideData.self, from: data)
     }
 
     static func savePredictions(_ data: CachedTideData) {
         guard let encoded = try? JSONEncoder().encode(data) else { return }
-        suite.set(encoded, forKey: "tideCache-\(data.stationId)")
+        suite.set(encoded, forKey: predictionKey(stationId: data.stationId))
     }
 
     // MARK: - Last Station (App Group — widget reads)
