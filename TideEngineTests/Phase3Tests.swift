@@ -22,7 +22,7 @@ final class Phase3Tests: XCTestCase {
         XCTAssertNil(latLon(fromLocal: SCNVector3Zero))
     }
 
-    func testGlobeCoordinates_RotatedSphereHitKeepsSameStation() throws {
+    func testGlobeCoordinates_RotatedSphereLocalPointKeepsSameStation() throws {
         let scene = SCNScene()
         let sphere = SCNNode(geometry: SCNSphere(radius: 1))
         scene.rootNode.addChildNode(sphere)
@@ -36,13 +36,16 @@ final class Phase3Tests: XCTestCase {
         for rotation: Float in [0, .pi / 2, .pi, -.pi / 3] {
             sphere.eulerAngles.y = rotation
             let worldPoint = sphere.convertPosition(stationPoint, to: nil)
-            // Ray through the rotated station exercises SCNHitTestResult.localCoordinates.
-            let hits = scene.rootNode.hitTestWithSegment(
-                from: SCNVector3(worldPoint.x * 2, worldPoint.y * 2, worldPoint.z * 2),
-                to: SCNVector3Zero, options: nil
-            )
-            let hit = try XCTUnwrap(hits.first(where: { $0.node === sphere }))
-            let coordinate = try XCTUnwrap(latLon(fromLocal: hit.localCoordinates))
+            // A tap reports the world point; GlobeView reads SCNHitTestResult.localCoordinates,
+            // which is this world point expressed in the rotating sphere's space. Offscreen
+            // SceneKit segment hit tests return no hits without a renderer, so convert directly.
+            let local = sphere.convertPosition(worldPoint, from: nil)
+            let coordinate = try XCTUnwrap(latLon(fromLocal: local))
+            let naive = try XCTUnwrap(latLon(fromLocal: worldPoint))
+            if rotation != 0 {
+                // The old world-space conversion picks a different longitude once the globe turns.
+                XCTAssertGreaterThan(abs(naive.longitude - (-122.465889)), 1)
+            }
             XCTAssertEqual(coordinate.latitude, 37.806305, accuracy: 0.05)
             XCTAssertEqual(coordinate.longitude, -122.465889, accuracy: 0.05)
             XCTAssertLessThan(NOAAClient.haversineDistance(
