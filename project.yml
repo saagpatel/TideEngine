@@ -45,7 +45,7 @@ targets:
       path: TideEngine/TideEngine.entitlements
       properties:
         com.apple.security.application-groups:
-          - group.com.tideengine.TideEngine
+          - group.com.tideengine
     dependencies:
       - target: TideEngineWidget
         embed: true
@@ -82,7 +82,7 @@ targets:
       path: TideEngineWidget/TideEngineWidget.entitlements
       properties:
         com.apple.security.application-groups:
-          - group.com.tideengine.TideEngine
+          - group.com.tideengine
 
   TideEngineTests:
     type: bundle.unit-test

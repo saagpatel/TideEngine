@@ -1,7 +1,7 @@
 import Foundation
 
 struct TideCache {
-    private static var suite: UserDefaults { UserDefaults(suiteName: "group.com.tideengine.TideEngine") ?? .standard }
+    private static var suite: UserDefaults { UserDefaults(suiteName: "group.com.tideengine") ?? .standard }
     private static var standard: UserDefaults { .standard }
 
     // MARK: - Predictions (App Group — widget-accessible)

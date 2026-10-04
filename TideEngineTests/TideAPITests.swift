@@ -237,7 +237,7 @@ final class TideAPITests: XCTestCase {
 
     func testLegacyStationLocalCacheIsIgnoredByBothLoaders() throws {
         let stationId = "TEST-LEGACY-\(UUID().uuidString)"
-        let suite = try XCTUnwrap(UserDefaults(suiteName: "group.com.tideengine.TideEngine"))
+        let suite = try XCTUnwrap(UserDefaults(suiteName: "group.com.tideengine"))
         let legacyKey = "tideCache-\(stationId)"
         let currentKey = "tideCache-v2-gmt-\(stationId)"
         defer {
