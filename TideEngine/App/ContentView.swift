@@ -67,14 +67,14 @@ struct ContentView: View {
                     }
                     Spacer()
 
-                    Text("Drag to explore • Tap a supported U.S. coast for NOAA tides")
+                    Text("Drag to explore • Tap near a NOAA station for tides")
                         .font(.caption)
                         .foregroundStyle(.white.opacity(0.9))
                         .multilineTextAlignment(.center)
                         .padding(.horizontal, 16)
                         .padding(.vertical, 10)
                         .background(.ultraThinMaterial, in: Capsule())
-                        .accessibilityLabel("Drag to explore. Tap a supported United States coast for NOAA tides.")
+                        .accessibilityLabel("Drag to explore. Tap near a NOAA station for tides.")
                 }
                 .padding()
             }

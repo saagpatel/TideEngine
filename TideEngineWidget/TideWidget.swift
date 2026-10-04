@@ -259,7 +259,7 @@ struct TideWidget: Widget {
             TideWidgetView(entry: entry)
         }
         .configurationDisplayName("Tide Engine")
-        .description("Current gravitational pull and next tide.")
+        .description("Modeled gravitational pull, plus the next predicted tide in the medium size.")
         .supportedFamilies([.systemSmall, .systemMedium])
     }
 }
