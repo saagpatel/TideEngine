@@ -28,3 +28,6 @@ Package.resolved
 .AppleDouble
 .LSOverride
 CLAUDE.md.bak
+
+# Distribution lane receipts
+dist-receipts/
