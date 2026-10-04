@@ -75,6 +75,23 @@ struct LocalTideView: View {
     private let cardBackground = Color(red: 0.07, green: 0.09, blue: 0.15)
 
     var body: some View {
+#if DEBUG
+        if AppStoreScreenshot.number == 3 {
+            ScrollViewReader { proxy in
+                detailScrollView
+                    .onChange(of: isLoadingTides) { _, loading in
+                        if !loading { proxy.scrollTo("appstore-tide-predictions", anchor: .top) }
+                    }
+            }
+        } else {
+            detailScrollView
+        }
+#else
+        detailScrollView
+#endif
+    }
+
+    private var detailScrollView: some View {
         ScrollView {
             VStack(spacing: 0) {
                 // ── Station header ────────────────────────────────────────
@@ -104,6 +121,9 @@ struct LocalTideView: View {
 
                 // ── Next tide cards ───────────────────────────────────────
                 nextTidesSection
+#if DEBUG
+                    .id("appstore-tide-predictions")
+#endif
 
                 // ── Error / stale banner ──────────────────────────────────
                 statusBanner
@@ -117,7 +137,7 @@ struct LocalTideView: View {
         .navigationBarTitleDisplayMode(.inline)
         .toolbarColorScheme(.dark, for: .navigationBar)
         .task {
-            strength = LocalTidalStrength.compute(for: coordinate, at: .now)
+            strength = LocalTidalStrength.compute(for: coordinate, at: referenceDate)
             do {
                 tideResult = try await TideDataService.shared.loadTideData(for: coordinate)
             } catch {
@@ -406,8 +426,18 @@ struct LocalTideView: View {
             HStack(spacing: 8) {
                 Image(systemName: "clock.fill")
                     .font(.caption)
+#if DEBUG
+                if AppStoreScreenshot.number != nil {
+                    Text("Cached data from \(appStoreScreenshotCacheAge(cachedAt))")
+                        .font(.caption)
+                } else {
+                    Text("Cached data from \(cachedAt, format: .relative(presentation: .named))")
+                        .font(.caption)
+                }
+#else
                 Text("Cached data from \(cachedAt, format: .relative(presentation: .named))")
                     .font(.caption)
+#endif
             }
             .foregroundStyle(.orange)
             .frame(maxWidth: .infinity, alignment: .leading)
@@ -452,12 +482,28 @@ struct LocalTideView: View {
 
     private var upcomingTides: [TidePrediction] {
         guard let predictions = tideResult?.predictions else { return [] }
-        return TidePrediction.upcoming(in: predictions, after: .now)
+        return TidePrediction.upcoming(in: predictions, after: referenceDate)
             .prefix(4)
             .map { $0 }
     }
 
     // MARK: - Helpers
+
+    private var referenceDate: Date {
+#if DEBUG
+        if AppStoreScreenshot.number != nil { return AppStoreScreenshot.date }
+#endif
+        return .now
+    }
+
+#if DEBUG
+    private func appStoreScreenshotCacheAge(_ date: Date) -> String {
+        let formatter = RelativeDateTimeFormatter()
+        formatter.locale = Locale(identifier: "en_US")
+        formatter.dateTimeStyle = .named
+        return formatter.localizedString(for: date, relativeTo: AppStoreScreenshot.date)
+    }
+#endif
 
     private func tidalMetric(label: String, value: String, icon: String) -> some View {
         VStack(spacing: 6) {
@@ -493,7 +539,7 @@ struct LocalTideView: View {
     }
 
     private func relativeTime(to date: Date) -> String {
-        let seconds = date.timeIntervalSince(Date.now)
+        let seconds = date.timeIntervalSince(referenceDate)
         guard seconds > 0 else { return "now" }
         let hours = Int(seconds) / 3600
         let minutes = (Int(seconds) % 3600) / 60

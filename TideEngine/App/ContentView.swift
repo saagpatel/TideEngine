@@ -107,7 +107,14 @@ struct ContentView: View {
             let scene = GlobeScene(renderer: renderer)
 
             // Initial render with current ephemeris
-            let positions = Ephemeris.positions(at: .now)
+            var date = Date.now
+#if DEBUG
+            if AppStoreScreenshot.number != nil {
+                date = AppStoreScreenshot.date
+                scene.freezeForAppStoreScreenshot(at: date)
+            }
+#endif
+            let positions = Ephemeris.positions(at: date)
             if let moon = positions.first(where: { $0.body == .moon }),
                let sun = positions.first(where: { $0.body == .sun }) {
                 let field = TidalForce.computeHeightField(moon: moon, sun: sun)
@@ -116,6 +123,12 @@ struct ContentView: View {
 
             await MainActor.run {
                 self.globeScene = scene
+#if DEBUG
+                if let number = AppStoreScreenshot.number, number > 1 {
+                    tappedCoordinate = CLLocationCoordinate2D(latitude: 37.78, longitude: -122.42)
+                    showLocalTide = true
+                }
+#endif
             }
         } catch {
             await MainActor.run {
