@@ -515,8 +515,10 @@ struct LocalTideView: View {
     }
 }
 
+#if DEBUG
 #Preview {
     NavigationStack {
         LocalTideView(coordinate: CLLocationCoordinate2D(latitude: 37.78, longitude: -122.42))
     }
 }
+#endif
