@@ -35,6 +35,12 @@ targets:
         INFOPLIST_KEY_UISupportedInterfaceOrientations: "UIInterfaceOrientationPortrait"
         CODE_SIGN_ENTITLEMENTS: TideEngine/TideEngine.entitlements
         CODE_SIGN_STYLE: Automatic
+      configs:
+        Release:
+          CODE_SIGN_STYLE: Manual
+          CODE_SIGN_IDENTITY: Apple Distribution
+          PROVISIONING_PROFILE_SPECIFIER: TideEngine App Store
+          DEVELOPMENT_TEAM: 3TGZFKFNA4
     entitlements:
       path: TideEngine/TideEngine.entitlements
       properties:
@@ -65,6 +71,12 @@ targets:
         CODE_SIGN_ENTITLEMENTS: TideEngineWidget/TideEngineWidget.entitlements
         CODE_SIGN_STYLE: Automatic
         DEVELOPMENT_TEAM: 3TGZFKFNA4
+      configs:
+        Release:
+          CODE_SIGN_STYLE: Manual
+          CODE_SIGN_IDENTITY: Apple Distribution
+          PROVISIONING_PROFILE_SPECIFIER: TideEngine Widget App Store
+          DEVELOPMENT_TEAM: 3TGZFKFNA4
     entitlements:
       path: TideEngineWidget/TideEngineWidget.entitlements
       properties:
