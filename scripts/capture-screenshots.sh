@@ -91,6 +91,12 @@ for index in "${!device_names[@]}"; do
     directory="$OUTPUT/${device_slugs[$index]}"
     mkdir -p "$directory"
 
+    # Make this app the previous foreground app to clear the cross-app back link.
+    SIMCTL_CHILD_TZ=UTC xcrun simctl launch "$id" "$bundle_id" \
+        -AppStoreScreenshot 1 -AppleLanguages '(en)' -AppleLocale en_US
+    sleep 2
+    xcrun simctl terminate "$id" "$bundle_id" >/dev/null 2>&1 || true
+
     # Widgets are deliberately excluded: simctl launch cannot arrange the Home Screen.
     for shot in 1 2 3; do
         wait_variable="SHOT_WAIT_$shot"
