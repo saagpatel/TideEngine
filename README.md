@@ -34,7 +34,7 @@ open TideEngine.xcodeproj
 Build and run the `TideEngine` scheme on a device or simulator.
 
 The app bundle ID is `com.tideengine.TideEngine`; the widget uses
-`com.tideengine.TideEngine.widget`. Both share `group.com.tideengine.TideEngine`.
+`com.tideengine.TideEngine.widget`. Both share `group.com.tideengine`.
 
 ## Verification
 

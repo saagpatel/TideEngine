@@ -86,7 +86,7 @@ Home Screen widget screenshots are excluded: `simctl launch` cannot arrange or c
 
 ## Release-owner checklist
 
-- [ ] Confirm `com.tideengine.TideEngine`, `com.tideengine.TideEngine.widget`, and `group.com.tideengine.TideEngine` in Apple Developer and App Store Connect.
+- [ ] Confirm `com.tideengine.TideEngine`, `com.tideengine.TideEngine.widget`, and `group.com.tideengine` in Apple Developer and App Store Connect.
 - [ ] Confirm distribution certificate and provisioning profiles; run a signed archive and Validate App.
 - [ ] Confirm the privacy nutrition label matches `PRIVACY.md` and actual behavior.
 - [ ] Capture the screenshot plan at 1320x2868 from the release build; add 2064x2752 iPad screenshots only if the shipped app includes device family `2`.
