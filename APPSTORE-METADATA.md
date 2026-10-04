@@ -8,7 +8,7 @@ This is a release-owner draft. Confirm the bundle ID, category, price, URLs, scr
 |---|---|
 | Name | Tide Engine |
 | Subtitle | Gravity meets the ocean |
-| Bundle ID | `com.tideengine.app` |
+| Bundle ID | `com.tideengine.TideEngine` |
 | SKU | `TIDEENGINE-001` |
 | Primary category | Education |
 | Secondary category | Weather |
@@ -61,7 +61,7 @@ No reviewer account or in-app purchase is required.
 
 ## Release-owner checklist
 
-- [ ] Confirm `com.tideengine.app`, `com.tideengine.app.widget`, and `group.com.tideengine` in Apple Developer and App Store Connect.
+- [ ] Confirm `com.tideengine.TideEngine`, `com.tideengine.TideEngine.widget`, and `group.com.tideengine.TideEngine` in Apple Developer and App Store Connect.
 - [ ] Confirm distribution certificate and provisioning profiles; run a signed archive and Validate App.
 - [ ] Confirm the privacy nutrition label matches `PRIVACY.md` and actual behavior.
 - [ ] Capture the currently required iPhone screenshots from the release build.

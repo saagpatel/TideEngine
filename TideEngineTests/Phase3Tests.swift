@@ -47,7 +47,7 @@ final class Phase3Tests: XCTestCase {
             dataSource: .noaa
         )
         TideCache.saveLastStation(station)
-        defer { UserDefaults(suiteName: "group.com.tideengine")?.removeObject(forKey: "lastStation") }
+        defer { UserDefaults(suiteName: "group.com.tideengine.TideEngine")?.removeObject(forKey: "lastStation") }
 
         let loaded = TideCache.loadLastStation()
         XCTAssertEqual(loaded?.id, station.id)

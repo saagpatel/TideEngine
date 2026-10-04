@@ -168,18 +168,10 @@
 				1B7949F6713352EC050589BF /* Globe */,
 				A081413F5309E3CB0261C1D0 /* LocalTide */,
 				7476E3444728CE96E58F1F88 /* Location */,
-				653DF65ED67AE6BA10AE711B /* Paywall */,
 				CF985A4C0F8775718F17E6C4 /* Resources */,
 				869C7D99D638556A5DB09D5B /* Tides */,
 			);
 			path = TideEngine;
-			sourceTree = "<group>";
-		};
-		653DF65ED67AE6BA10AE711B /* Paywall */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Paywall;
 			sourceTree = "<group>";
 		};
 		7476E3444728CE96E58F1F88 /* Location */ = {
@@ -333,8 +325,8 @@
 			projectRoot = "";
 			targets = (
 				81F66BB9609912DAE92EAD64 /* TideEngine */,
-				E888187F5178B3930FA6A6F9 /* TideEngineTests */,
 				7B647E53A5EFD925BF1CC9AB /* TideEngineWidget */,
+				E888187F5178B3930FA6A6F9 /* TideEngineTests */,
 			);
 		};
 /* End PBXProject section */
@@ -435,7 +427,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.tideengine.TideEngineTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tideengine.TideEngine.tests;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TideEngine.app/TideEngine";
@@ -454,7 +446,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.tideengine.app.widget;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tideengine.TideEngine.widget;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -472,7 +464,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.tideengine.app.widget;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tideengine.TideEngine.widget;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -487,6 +479,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3TGZFKFNA4;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Tide Engine uses your location when you ask it to find a nearby NOAA tide station.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -495,7 +488,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.tideengine.app;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tideengine.TideEngine;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -535,7 +528,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -577,6 +570,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3TGZFKFNA4;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Tide Engine uses your location when you ask it to find a nearby NOAA tide station.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -585,7 +579,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.tideengine.app;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tideengine.TideEngine;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -601,7 +595,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.tideengine.TideEngineTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tideengine.TideEngine.tests;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TideEngine.app/TideEngine";
@@ -642,7 +636,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
