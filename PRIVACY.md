@@ -4,7 +4,7 @@ Tide Engine does not include advertising, analytics, tracking, or user accounts.
 
 ## Location
 
-Location access is optional and requested only when you tap the arrow icon labeled "Show tides near me" for accessibility. Your device uses the coordinate to select a nearby NOAA tide station. Tide Engine does not send your precise device coordinate to NOAA or save it to persistent storage. The coordinate is held in memory for the globe and tide detail view. The selected NOAA station and cached tide predictions may be stored on your device and shared with the Tide Engine widget.
+Location access is optional and requested only when you tap the arrow button (VoiceOver reads it as "Show tides near me"). Your device uses the coordinate to select a nearby NOAA tide station. Tide Engine does not send your precise device coordinate to NOAA or save it to persistent storage. The coordinate is held in memory for the globe and tide detail view. The selected NOAA station and cached tide predictions may be stored on your device and shared with the Tide Engine widget.
 
 ## Network requests
 
