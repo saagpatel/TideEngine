@@ -68,14 +68,21 @@ No reviewer account or in-app purchase is required.
 
 ## Screenshot plan
 
-Capture the actual release UI at **6.9-inch iPhone 1320x2868** portrait. The app and widget target device family `1` (iPhone); no iPad set is planned. If the shipped app adds family `2`, also capture **13-inch iPad 2064x2752** portrait.
+Capture the real app UI at **6.9-inch iPhone 1320x2868** portrait on **iPhone 18 Pro Max**. The app and widget target device family `1` (iPhone); no iPad set is planned. If the shipped app adds family `2`, also capture **13-inch iPad 2064x2752** portrait; that size is not part of the current script.
 
-1. Globe screen: "TIDE ENGINE", "Gravity, made visible", and the modeled field. Caption: "Explore modeled tidal forces".
-2. Loaded station detail: station name, distance, model metrics, and "7-Day Tide Heights". Use a successful NOAA request and retain the actual "Live NOAA" or "Cached" badge. Caption: "NOAA predictions near supported stations".
-3. Scrolled detail: "Tide Predictions", "High Tide" and "Low Tide" rows with actual times and heights. Caption: "Tide times in your device's time zone".
-4. Home Screen with populated small and medium widgets: gauge, station name, and update-age labels; the next tide appears only in the medium widget. Caption: "Cached station data, with its update age".
+| n | State and caption | Device sizes | Capture |
+|---|---|---|---|
+| 1 | Globe screen: "TIDE ENGINE", "Gravity, made visible", and the modeled field. Caption: "Explore modeled tidal forces". | 6.9-inch iPhone, 1320x2868 portrait | Simulator |
+| 2 | Loaded San Francisco station detail: station name, distance, model metrics, and "7-Day Tide Heights". Retain the real "Cached" badge. Caption: "NOAA predictions near supported stations". | 6.9-inch iPhone, 1320x2868 portrait | Simulator, deterministic fixture cache |
+| 3 | Scrolled detail: "Tide Predictions", "High Tide" and "Low Tide" rows with fixture times and heights. Caption: "Tide times in your device's time zone". | 6.9-inch iPhone, 1320x2868 portrait | Simulator, deterministic fixture cache |
 
-Do not substitute placeholder data or promise station-local times, global prediction coverage, automatic NOAA widget fetching, or a next tide in the small widget. Capture loaded states only after real data is available. Screenshots have not been captured in this copy pass.
+Run `bash scripts/capture-screenshots.sh` on the dispatcher's Mac with Xcode and the named simulator installed. It builds Debug once and launches `-AppStoreScreenshot 1`, `2`, and `3`; output is `screenshots/appstore/iphone-18-pro-max/01.png` through `03.png`. The default settling wait is 4 seconds; use `SHOT_WAIT` or per-shot `SHOT_WAIT_1`, `SHOT_WAIT_2`, `SHOT_WAIT_3` if the simulator needs longer. `DERIVED` overrides `.build/shots`. A missing or ambiguously named device or a pixel-size mismatch fails the script.
+
+For these numbered app shots, this Debug capture procedure supersedes the older Release-build capture instruction in the checklist below.
+
+Debug screenshot mode fixes the modeled field, clock, and relative labels at **2026-03-22 00:10 UTC**, with English text, UTC device display time, standard text size, and dark appearance. It uses an isolated in-memory station/prediction cache for NOAA station **9414290**, seeded from `TideAPITests`' San Francisco fixtures. The four hi/lo values repeat daily over seven days; hourly heights reuse the first four fixture values and interpolate between repeated extremes thereafter. This is synthetic fixture data, not a retained seven-day NOAA response or proof of a successful live request. Review this fixture provenance before uploading the resulting PNGs. Normal Release data loading is unchanged.
+
+Home Screen widget screenshots are excluded: `simctl launch` cannot arrange or capture populated Home Screen widgets. No current numbered shot requires hardware unavailable to the simulator, so there are no `OPERATOR: capture on device` rows. Do not promise station-local times, global prediction coverage, automatic NOAA widget fetching, or a next tide in the small widget. Screenshots have not been captured in this worker pass.
 
 ## Release-owner checklist
 
